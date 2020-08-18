@@ -29,14 +29,17 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.clearErrorMsg();
+    console.log("userInterface---->>>>",this.userInterface);
     if (this.validateForm(this.userInterface.email, this.userInterface.password)) {
       this.authservice.registerWithEmail(this.userInterface).then(() => {
         this.message = "Succssfully registered."
+        this.userInterface = new UserInterface();
       }).catch(_error => {
         this.error = _error
         this.router.navigate(['/register'])
       })
     }
+    
   }
 
   validateForm(email, password) {
