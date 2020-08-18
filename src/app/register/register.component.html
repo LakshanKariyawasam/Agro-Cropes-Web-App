@@ -1,0 +1,88 @@
+<!-- <app-loading-mask *ngIf="loadingMask"></app-loading-mask> -->
+
+<div class="register-container">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-4">
+            <div class="col-12">
+                <div class="welcome-msg">Register to</div>
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="col-12">
+                <br>
+                <span class="app-title">Agro Cropes Sales System</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <img class="register-brand" style="margin-left: 18%;margin-top: 23%;" src="/assets/images/agro-cropes.png">
+        </div>
+        <div class="col-1"></div>
+
+        <div class="col-7">
+
+            <div class="register-container">
+                <form (ngSubmit)="register()">
+                    <div class="row">
+
+                        <div class="form-group" class="col-5">
+                            <input type="text" [(ngModel)]="userInterface.firstName" name="userInterface.firstName" class="form-control" id="first_Name" placeholder="First Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="form-group" class="col-5">
+                            <input type="text" [(ngModel)]="userInterface.lastName" name="userInterface.lastName" class="form-control" id="last_Name" placeholder="Last Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="form-group" class="col-10">
+                            <input type="text" [(ngModel)]="userInterface.contactNo" name="userInterface.contactNo" class="form-control" id="contactNo" placeholder="Contact No" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="form-group" class="col-10">
+                            <input type="text" [(ngModel)]="userInterface.email" name="userInterface.email" class="form-control" id="register_email" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="form-group" class="col-10">
+                            <input type="password" [(ngModel)]="userInterface.password" name="userInterface.password" class="form-control" id="register_password" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <br>
+                            <button type="submit" class="btn btn-primary register-btn" style="margin-top: -50px;">Register</button>
+                        </div>
+                        <div class="col-3">
+                            <div class="register"><a href="#" routerLink="/login">Back To Login</a></div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="form-group">
+                    <p *ngIf="errorMsg.length > 0" class="text-danger">{{errorMsg}}</p>
+
+                    <p *ngIf="error.message.length > 0" class="text-danger">{{error.message}} </p>
+
+                    <p *ngIf="message.length > 0" class="text-info">{{message}} </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

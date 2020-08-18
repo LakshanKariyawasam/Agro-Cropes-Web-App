@@ -6,6 +6,7 @@ import { OperationalDashboardComponent } from './operational-dashboard/operation
 import { StrategicDashboardComponent } from './strategic-dashboard/strategic-dashboard.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrderAcceptComponent } from './order-accept/order-accept.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [];
 const appRoutes: Routes = [
@@ -39,6 +40,11 @@ const appRoutes: Routes = [
     {
         path: 'order-accept',
         component: OrderAcceptComponent
+    },
+
+    {
+        path: 'register',
+        component: RegisterComponent
     },
 
     { path: '**', redirectTo: 'login' }

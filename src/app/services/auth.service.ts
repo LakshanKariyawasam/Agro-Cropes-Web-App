@@ -41,9 +41,9 @@ export class AuthService {
             return false
         }
     }
-
-    registerWithEmail(email: string, password: string) {
-        return this.afu.createUserWithEmailAndPassword(email, password)
+    //Sign Up
+    registerWithEmail(user: UserInterface) {
+        return this.afu.createUserWithEmailAndPassword(user.email,user.password)
             .then((user) => {
                 this.authState = user
             })
@@ -69,4 +69,16 @@ export class AuthService {
         this.afu.signOut();
         this.router.navigate(['/login']);
     }
+    
+}
+
+export class UserInterface {
+
+    nodeBisid: string;
+    firstName: string;
+    lastName: string;
+    contactNo: string;
+    email: string;
+    password: string;
+    status: string
 }

@@ -76,6 +76,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrderAcceptComponent } from './order-accept/order-accept.component';
+import { RegisterComponent } from './register/register.component';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -123,7 +124,8 @@ const cubejsOptions = {
     DashboardComponent,
     OperationalDashboardComponent,
     StrategicDashboardComponent,
-    OrderAcceptComponent
+    OrderAcceptComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
