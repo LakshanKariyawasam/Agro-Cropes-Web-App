@@ -1,0 +1,55 @@
+import { GroupModel } from "./GroupModel";
+import { FunctionModel } from "./FunctionModel";
+
+export class LoggedInUserModel{
+
+    userId : string = null;
+    firstName : string = null;
+    lastName : string = "abc";
+    commonName : string = null;
+    designation : string = null;
+    extraParams : string = null;
+    nic : string = null;
+    telephoneNumber : string = null;
+    email : string = null;
+    status : string = null;
+    password : string = null;
+    newPassword : string = null;
+    createdOn : string = null;
+    createdBy : string = null;
+    modifiedOn : string = null;
+    modifiedBy : string = null;
+    inactivedOn : string = null;
+    inactivedBy : string = null;
+    address : string = null;
+    loginStatus : string = null;
+    loginFailAttempts : string = null;
+    lastLoginAccessedOn : string = null;
+    lastLoggedoutOn : string = null;
+    lastLoggedIPAddress : string = null;
+    lastLoggedInSystem : string = null;
+    lastLoggedInOn : string = null;
+    lastAccessedUri : string = null;
+    activateBy : string = null;
+    activateOn : string = null;
+    lastGeneratedKey : string = null;
+    pwdChangedBy : string = null;
+    pwdChangedOn : string = null;
+    pwdFailureAttemptsAll : string = null;
+    pwdResetBy : string = null;
+    pwdResetOn : string = null;
+    securityAnswer : string = null;
+    securityQuestion : string = null;
+    accountUnlockedBy : string = null;
+    accountUnlockedOn : string = null;
+    accountUnlockTime : string = null;
+    dn : string = null;
+    organization : string = null;
+    division : string = null;
+    countryCode : string = null;
+    branch : string = null;
+    department : string = null;
+    room : string = null;
+    groups : Array<GroupModel> = [];
+    functions : Array<FunctionModel> = [];
+}

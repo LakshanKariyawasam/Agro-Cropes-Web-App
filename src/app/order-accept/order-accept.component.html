@@ -1,0 +1,42 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
+<div class="page-title">Order Accept</div>
+
+<!-- <input [(ngModel)]="GRNSerialList.grnNo" name="GRNSerialList.grnNo" type="text" id="search" style= "margin-top: 20px; width: 20%">&nbsp;&nbsp;&nbsp;&nbsp;
+      <button style="width: 60px" type="button" class="btn btn-icon btn-primary" placeholder="Enter GRN Number here" (click)="getGRNSerial(GRNSerialList.grnNo)"><clr-icon shape="search"></clr-icon></button>
+      -->
+
+<clr-date-container>
+    <input type="date" clrDate name="date" [(ngModel)]="date" max>
+</clr-date-container>
+
+
+<clr-datagrid style="height: 100% !important; ">
+    <clr-dg-column [clrDgField]="'serial'">Order No</clr-dg-column>
+    <clr-dg-column [clrDgField]="'itemDesc'">Vendor Name</clr-dg-column>
+    <clr-dg-column>Item Type</clr-dg-column>
+    <clr-dg-column>Quantity</clr-dg-column>
+    <clr-dg-column>Accepted Qty</clr-dg-column>
+    <clr-dg-column>Write</clr-dg-column>
+
+    <clr-dg-row *ngFor="let grn of GRNSerialList">
+        <clr-dg-cell>{{grn.serial}}</clr-dg-cell>
+        <clr-dg-cell>{{grn.itemDesc}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="grn.type == 1 ">
+            Single</clr-dg-cell>
+        <clr-dg-cell *ngIf="grn.type == 2">
+            Multiple</clr-dg-cell>
+        <clr-dg-cell>{{grn.qty}}</clr-dg-cell>
+        <clr-dg-cell>{{grn.acceptQTY}}</clr-dg-cell>
+        <clr-dg-cell>
+            <button *ngIf="grn.qty != grn.acceptQTY " (click)="writeTag(grn)" class="btn btn-sm">Write</button>
+            <button *ngIf="grn.qty == grn.acceptQTY " (click)="writeTag(grn)" class="btn btn-sm" disabled>Write</button>
+        </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Items
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

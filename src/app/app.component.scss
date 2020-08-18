@@ -1,0 +1,38 @@
+// regular style toast 
+@import '~ngx-toastr/toastr';
+ 
+
+
+.nav-link {
+    /* color: #fff !important; */
+    height: 40px;
+    
+}
+
+.sidenav a:hover {
+    background: #007bbb;
+}
+
+.sidenav .sidenav-content>.nav-link{
+    margin-left: 0;
+    line-height: 40px;
+    margin-top: 10px
+}
+
+.sidenav .sidenav-content>.nav-link.active {
+    background-color: #364957 !important;
+}
+
+.sidenav .sidenav-content {
+    height: calc(100vh - 60px);
+}
+
+.content-area{
+    overflow-x: hidden;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

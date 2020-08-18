@@ -1,0 +1,128 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
+<div class="page-title">User Maintenance</div>
+<button class="btn btn-primary" (click)="openAddNewUserModel(1,null)">Add new user</button>
+<p-growl></p-growl>
+<clr-datagrid>
+  <clr-dg-column [clrDgField]="'userId'">User ID</clr-dg-column>
+  <clr-dg-column [clrDgField]="'firstName'">First Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'lastName'">Last Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'designation'">Designation</clr-dg-column>
+  <clr-dg-column>Status</clr-dg-column>
+  <clr-dg-column>Edit</clr-dg-column>
+
+  <clr-dg-row *clrDgItems="let user of usersList">
+    <clr-dg-cell>{{user.userId}}</clr-dg-cell>
+    <clr-dg-cell>{{user.firstName}}</clr-dg-cell>
+    <clr-dg-cell>{{user.lastName}}</clr-dg-cell>
+    <clr-dg-cell>{{user.designation}}</clr-dg-cell>
+    <clr-dg-cell>{{(user.status==1)? 'Active' : 'Inactive' }}</clr-dg-cell>
+    <clr-dg-cell>
+      <button (click)="openAddNewUserModel(2,user)" class="btn btn-sm">Edit</button>
+    </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <!-- {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Users -->
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+
+
+
+
+<!-- ####################### add new user model ######################## -->
+<clr-modal [(clrModalOpen)]="addNewUserModel" [clrModalSize]="'md'" [clrModalClosable]="false">
+  <h3 class="modal-title" *ngIf="editMode == false">Add New User</h3>
+  <h3 class="modal-title" *ngIf="editMode == true">Edit User</h3>
+  <div class="modal-body">
+
+
+    <div class="alert alert-danger" *ngIf="userValidationArray.length>0">
+      <div class="alert-items">
+        <div class="alert-item static">
+          <div class="alert-icon-wrapper">
+            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="alert-text">
+            <ul>
+              <li *ngFor="let a of userValidationArray">{{a}}</li>
+
+            </ul>
+
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <form class="clr-form clr-form-horizontal">
+      <section class="form-block">
+
+
+        <clr-input-container>
+          <label for="unit">User ID</label>
+          <input clrInput [(ngModel)]="addNewUser.userId" name="addNewUser.userId" type="text" id="itemDesc"
+            placeholder="Enter user id here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">First Name</label>
+          <input clrInput [(ngModel)]="addNewUser.firstName" name="addNewUser.firstName" type="text" id="itemDesc"
+            placeholder="Enter first name here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">Last Name</label>
+          <input clrInput [(ngModel)]="addNewUser.lastName" name="addNewUser.lastName" type="text" id="itemDesc"
+            placeholder="Enter last name here">
+        </clr-input-container>
+
+
+        <clr-select-container>
+          <label for="aForm_3">Designation</label>
+
+          <select clrSelect id="aForm_3" [(ngModel)]="addNewUser.designation" name="addNewUser.designation">
+            <option [value]="0" selected>Select designation here</option>
+            <option [value]="designation.description" *ngFor="let designation of userDesignationList">
+              {{designation.description}}</option>
+          </select>
+
+        </clr-select-container>
+
+        <clr-select-container>
+          <label for="aForm_4">Status</label>
+
+          <select clrSelect [(ngModel)]="addNewUser.status" name="addNewUser.status" id="aForm_4">
+            <option [value]="0" selected>Select status here</option>
+            <option [value]="1">ACTIVE</option>
+            <option [value]="2">INACTIVE</option>
+          </select>
+
+        </clr-select-container>
+
+      </section>
+    </form>
+
+
+    <p-pickList [source]="userGroups2" [target]="selectedUserGroups" sourceHeader="Available" targetHeader="Selected"
+      [responsive]="true" filterBy="userName" dragdrop="false" sourceFilterPlaceholder="Search by User"
+      targetFilterPlaceholder="Search by User" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+      <ng-template let-user pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <div>{{user.groupName}}</div>
+        </div>
+      </ng-template>
+    </p-pickList>
+
+
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="addNewUserModel = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="addUser()" *ngIf="editMode == false">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="editUser()" *ngIf="editMode == true">Save</button>
+  </div>
+</clr-modal>

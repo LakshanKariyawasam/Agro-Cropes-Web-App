@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="clr-row">
+    <div class="clr-col-md-3">
+      <div class="widget navy-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="cog" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>System Qty</span>
+            <h2 class="font-bold" style="color: white; ">
+              {{newStockData.stockAmount}}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget lazur-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="bundle" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>Physical Qty</span>
+            <h2 class="font-bold" style="color: white; ">
+              {{newStockData.phyQty}}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget yellow-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="balance" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>Variance Qty</span>
+            <h2 class="font-bold" style="color: white; ">
+              {{newStockData.variance}}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget bg-danger">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <p style="font-size: 36px; color: white"> </p>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>Percentage</span>
+            <h2 *ngIf="newStockData.stockAmount!=0" class="font-bold" style="color: white; ">
+              {{(newStockData.variance*100/newStockData.stockAmount).toFixed(2)}}%
+            </h2>
+            <h2 *ngIf="newStockData.stockAmount==0" class="font-bold" style="color: white; ">
+              0%
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="clr-row">
+    <div class="clr-col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Verifications
+        </div>
+        <div class="card-block">
+
+          <div class="card-text">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Transactions
+        </div>
+        <div class="card-block">
+
+          <div class="card-text">
+            <div class="clr-row">
+              <div class="clr-col-md-6">
+                <clr-date-container style="width: 7rem; ">
+                  <input type="date" clrDate name="date" [(ngModel)]="date">
+                </clr-date-container>
+              </div>
+              <div class="clr-col-md-6">
+                <div class="btn-group btn-sm">
+                  <div class="radio btn">
+                    <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
+                    <label for="btn-demo-radio-1">Accept</label>
+                  </div>
+                  <div class="radio btn">
+                    <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
+                    <label for="btn-demo-radio-2">Return</label>
+                  </div>
+                  <div class="radio btn">
+                    <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
+                    <label for="btn-demo-radio-3">Out</label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
+<div class="login-container">
+
+    <div class="row">
+        <!-- <div class="col-6">
+            <img class="login-brand" src="/assets/images/agro-cropes.png">
+        </div> -->
+        <div class="col-6">
+
+            <div class="row">
+                <div class="col-12">
+                    <img class="login-brand" src="/assets/images/agro-cropes.png">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="welcome-msg">Welcome to</div>
+                </div>
+                <div class="col-12">
+                    <span class="app-title">Agro Cropes Sales System</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+
+            <div class="login-container">
+                <form (ngSubmit)="login()">
+                    <div class="row">
+
+                        <div class="form-group" class="col-8">
+                            <input type="text" [(ngModel)]="email" name="email" class="form-control"
+                                placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;" required>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="form-group" class="col-8">
+                            <input type="password" [(ngModel)]="password" name="password" class="form-control"
+                                placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;" required>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary login-btn">LOG
+                                IN</button>
+                        </div>
+                        <div class="col-4">
+                            <div class="register"><a href="#" routerLink="/register">New User Register</a></div>
+                        </div>
+                    </div>
+                </form>
+                <!-- <div class="form-group">
+                    <p *ngIf="errorMsg.length > 0" class="text-danger">{{errorMsg}}</p>
+                </div> -->
+                <div class="form-group" *ngIf="errorMsg.length > 0">
+                    <div class="alert-items">
+                        <div class="alert-item static">
+                            <div class="alert-icon-wrapper">
+                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                            </div>
+                            <span class="alert-text">{{errorMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

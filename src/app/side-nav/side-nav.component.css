@@ -1,0 +1,11 @@
+.nav-link {
+    color: #fff !important;
+}
+
+.nav-link .active {
+    color: #04101a !important;
+}
+
+.sidenav .sidenav-content {
+    height: calc(100vh - 60px);
+}

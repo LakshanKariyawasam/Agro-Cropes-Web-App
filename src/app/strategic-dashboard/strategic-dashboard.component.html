@@ -1,0 +1,540 @@
+<div class="container">
+
+  <div class="clr-row">
+    <div class="clr-col-md-3">
+      <div class="widget navy-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="cog" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>System Qty</span>
+            <h2 class="font-bold" style="color: white; ">
+              {{newStockData.phyQty}}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget yellow-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="coin-bag" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>System Value</span>
+            <h2 class="font-bold" style="color: white; ">
+              0
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget lazur-bg">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="bundle" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>Physical Qty</span>
+            <h2 class="font-bold" style="color: white; ">
+              {{newStockData.stockAmount}}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-md-3">
+      <div class="widget bg-danger">
+        <div class="clr-row">
+          <div class="clr-col-md-4">
+            <clr-icon shape="coin-bag" class="is-solid" size="36"></clr-icon>
+          </div>
+          <div class="clr-col-md-8 text-right">
+            <span>Physical Value</span>
+            <h2 class="font-bold" style="color: white; ">
+              0
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-row">
+
+
+    <div class="clr-col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Stock Details
+
+          <div class="clr-row" style="float: right; margin-bottom: 25px">
+            <div class="clr-col-md-6">
+              <div class="btn-group btn-sm">
+                <div class="radio btn">
+                  <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
+                  <label for="btn-demo-radio-1" (click)="stockByLocation()">Store</label>
+                </div>
+                <div class="radio btn">
+                  <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
+                  <label for="btn-demo-radio-2" (click)="stockByCategory()">Category</label>
+                </div>
+                <div class="radio btn">
+                  <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
+                  <label for="btn-demo-radio-3" (click)="stockByItem()">Item</label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card-block" style="padding: 0px;  padding-top: 35px;">
+          <div class="card-text">
+
+          </div>
+          <div *ngIf="this.chartType == 'item' " style="display: block">
+            <canvas baseChart [datasets]="barChartDataForStock" [labels]="barChartLabelsForStock"
+              [options]="barChartOptionsForStock" [legend]="barChartLegendForStock" [chartType]="barChartTypeForStock"
+              (chartClick)="chartClicked($event)">
+
+            </canvas>
+          </div>
+          <div *ngIf="this.chartType == 'store' " style="display: block">
+            <canvas baseChart [datasets]="barChartDataForStockLocation" [labels]="barChartLabelsForStockLocation"
+              [options]="barChartOptionsForStockLocation" [legend]="barChartLegendForStockLocation"
+              [chartType]="barChartTypeForStockLocation" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <div *ngIf="this.chartType == 'category' " style="display: block">
+            <canvas baseChart [datasets]="barChartDataForStockCategory" [labels]="barChartLabelsForStockCategory"
+              [options]="barChartOptionsForStockCategory" [legend]="barChartLegendForStockCategory"
+              [chartType]="barChartTypeForStockCategory" (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-row">
+
+    <div class="clr-col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Verifications
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+          </div>
+          <!-- <div style="display: block"> -->
+          <!-- <canvas baseChart 
+                    [datasets]="barChartDataForStockVerification"
+                    [labels]="barChartLabelsForStockVerification"
+                    [options]="barChartOptionsForStockVerification"
+                    [legend]="barChartLegendForStockVerification"
+                    [chartType]="barChartTypeForStockVerification"
+                    (onClick)="verChartClicked($event)">
+                    
+                  </canvas>         -->
+          <div *ngIf="this.varChartType == 'verChart'">
+            <canvas id="barChartOptionsForStockVerification"></canvas>
+          </div>
+          <div *ngIf="this.varChartType == 'verDrillDown'">
+            <canvas id="barChartOptionsForStockVerificationDrillDown"></canvas>
+          </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Stock Adjustments
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+          </div>
+          <clr-tabs>
+            <clr-tab>
+              <button clrTabLink id="link1">Search By Item</button>
+              <clr-tab-content id="content1" *clrIfActive>
+                <form class="clr-form clr-form-horizontal">
+                  <!-- <div class="clr-form-control"> -->
+                  <div class="clr-row">
+                    <div class="clr-col-md-6">
+
+                      <div class="clr-control-container" *ngIf="this.getMismatchArray.length == 0">
+                        <div class="clr-input-wrapper">
+                          <input clrInput [(ngModel)]="GetmismatchSerial.itemId" name="GetmismatchSerial.itemId"
+                            type="text" id="search" placeholder="Enter Item Number here" size="30"
+                            style="display: flex">
+                        </div>
+                      </div>
+
+                        <div class="clr-control-container clr-error" *ngIf="this.getMismatchArray == 999">
+                          <div class="clr-input-wrapper">
+                            <input clrInput [(ngModel)]="GetmismatchSerial.itemId" name="GetmismatchSerial.itemId"
+                              type="text" id="search" placeholder="Enter Item Number here" size="30"
+                              style="display: flex">
+                            <clr-icon class="clr-validate-icon" shape="exclamation-circle" style="float: right"></clr-icon>
+                          </div>
+                          <span class="clr-subtext">Invalid Item ID</span>
+                        </div>
+                    </div>
+                    <!-- [(ngModel)]="GetmismatchSerial.itemId" name="GetmismatchSerial.itemId" -->
+                    <div class="clr-col-md-6">
+                      <button type="button" class="btn btn-icon btn-primary"
+                        (click)="getItemByItemID(GetmismatchSerial.itemId)">
+                        <clr-icon shape="search"></clr-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- </div> -->
+                  <!-- <div class="clr-row">
+                    <div class="clr-col-md-6">
+                      <input clrInput [(ngModel)]="GetmismatchSerial.itemId" name="GetmismatchSerial.itemId" type="text" id="search" placeholder="Enter Item Number here" size="30"
+                        style="display: flex">
+                    </div> -->
+                  <!-- [(ngModel)]="GetmismatchSerial.itemId" name="GetmismatchSerial.itemId" -->
+                  <!-- <div class="clr-col-md-6">
+                      <button type="button" class="btn btn-icon btn-primary" (click)="getItemByItemID(GetmismatchSerial.itemId)">
+                        <clr-icon shape="search"></clr-icon>
+                      </button>
+                    </div>
+                  </div> -->
+
+                </form>
+              </clr-tab-content>
+            </clr-tab>
+            <clr-tab>
+              <button clrTabLink>Search By GRN</button>
+              <clr-tab-content *clrIfActive="true">
+                <form class="clr-form clr-form-horizontal">
+
+                  <div class="clr-row">
+                    <div class="clr-col-md-6">
+                        <div class="clr-control-container" *ngIf="this.getMismatchArray.length == 0">
+                            <div class="clr-input-wrapper">
+                      <input clrInput [(ngModel)]="GetmismatchSerial.grnNo" name="GetmismatchSerial.grnNo" type="text"
+                        id="search" placeholder="Enter GRN Number here" size="30" style="display: flex">
+                            </div>
+                        </div>
+                        <div class="clr-control-container clr-error" *ngIf="this.getMismatchArray == 999">
+                            <div class="clr-input-wrapper">
+                              <input clrInput [(ngModel)]="GetmismatchSerial.grnNo" name="GetmismatchSerial.grnNo"
+                                type="text" id="search" placeholder="Enter GRN Number here" size="30"
+                                style="display: flex">
+                              <clr-icon class="clr-validate-icon" shape="exclamation-circle" style="float: right"></clr-icon>
+                            </div>
+                            <span class="clr-subtext">Invalid GRN No</span>
+                          </div>
+                        </div>
+                      <!-- [(ngModel)]="GetmismatchSerial.grnNo" name="GetmismatchSerial.grnNo" -->
+                    <div class="clr-col-md-6">
+                      <button type="button" class="btn btn-icon btn-primary"
+                        (click)="getItemByGRNno(GetmismatchSerial.grnNo)">
+                        <clr-icon shape="search"></clr-icon>
+                      </button>
+                    </div>
+                  </div>
+
+                </form>
+              </clr-tab-content>
+            </clr-tab>
+          </clr-tabs>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="clr-row">
+
+    <div class="clr-col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Physical Issues
+          <div class="clr-row">
+          </div>
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+          </div>
+
+          <div class="clr-col-md-6" style="max-width: 100%">
+            <p-calendar dateRangeSelector styleClass="dateTimeField" (onSelect)="onChange(dateRange)"
+              [(ngModel)]="dateRange" [style]="{'width':'100%','height':'30px', 'display': 'flex'}"
+              [inputStyle]="{'width':'100%','height':'30px', 'display': 'flex'}"
+              placeholder=" DD/MM/YYYY  ~  DD/MM/YYYY " dateFormat="yy-mm-dd" selectionMode="range"
+              selectionMode="range" [readonlyInput]="true" [showIcon]="true">
+            </p-calendar>
+            <!-- <p-calendar selectionMode="range" ></p-calendar> -->
+          </div>
+          <div *ngIf="this.issueChartType == 'issueChart'">
+            <canvas id="barChartOptionsForIssue"></canvas>
+          </div>
+          <div *ngIf="this.issueChartType == 'issueDrillDown'">
+            <canvas id="barChartOptionsForIssueLocation"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clr-col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Physical INs
+            <div class="clr-row">
+            </div>
+          </div>
+          <div class="card-block">
+            <div class="card-text">
+            </div>
+  
+            <div class="clr-col-md-6" style="max-width: 100%">
+              <p-calendar dateRangeSelector styleClass="dateTimeField" (onSelect)="onChange(dateRange)"
+                [(ngModel)]="dateRange" [style]="{'width':'100%','height':'30px', 'display': 'flex'}"
+                [inputStyle]="{'width':'100%','height':'30px', 'display': 'flex'}"
+                placeholder=" DD/MM/YYYY  ~  DD/MM/YYYY " dateFormat="yy-mm-dd" selectionMode="range"
+                selectionMode="range" [readonlyInput]="true" [showIcon]="true">
+              </p-calendar>
+              <!-- <p-calendar selectionMode="range" ></p-calendar> -->
+              
+            </div>
+            <div>
+                <canvas id="barChartOptionsForIssueGRNIns"></canvas>
+              </div>
+            <!-- <div *ngIf="this.issueChartType == 'issueChart'">
+              <canvas id="barChartOptionsForIssue"></canvas>
+            </div>
+            <div *ngIf="this.issueChartType == 'issueDrillDown'">
+              <canvas id="barChartOptionsForIssueLocation"></canvas>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <!-- <app-strategic-dashboard chartType="singleValue" [query]="query1" ></app-strategic-dashboard> -->
+</div>
+
+
+
+
+<clr-modal [(clrModalOpen)]="IssueModal" [clrModalSize]="'lg'" [clrModalClosable]="true">
+
+  <h3 class="modal-title">Physical Issue Items</h3>
+  <div class="modal-body">
+    <!-- <form class="modal-form"> -->
+
+    <clr-datagrid>
+      <clr-dg-column>Item ID</clr-dg-column>
+      <clr-dg-column>Qty</clr-dg-column>
+
+      <clr-dg-row *clrDgItems="let issueItems of issueItemArray" [clrDgItem]="issueItems">
+
+        <clr-dg-cell>{{issueItems.itemID}}</clr-dg-cell>
+        <clr-dg-cell>{{issueItems.qty}}</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-footer>
+        <!-- <clr-dg-pagination #pagination [clrDgPageSize]="10"> -->
+          <!-- {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} -->
+        <!-- </clr-dg-pagination> -->
+      </clr-dg-footer>
+    </clr-datagrid>
+    <div class="clr-row">
+
+      <div class="clr-col-md-4">
+        <!-- <button class="btn btn-sm" (click)="closeMismatchTypeModel()">Cancel</button> -->
+        <button class="btn btn-sm" (click)="closeIssueModal()">Done</button>
+      </div>
+    </div>
+  </div>
+</clr-modal>
+
+
+<!--------------------------------------Stock Adjustment  Modal---------------------------------->
+
+
+
+<clr-modal [(clrModalOpen)]="stockAdjustmentmodal" [clrModalSize]="'lg'" [clrModalClosable]="false">
+
+  <h3 class="modal-title">Stock Adjustments</h3>
+  <div class="modal-body">
+
+    <clr-datagrid>
+      <clr-dg-column>Item No</clr-dg-column>
+      <clr-dg-column>Item Name</clr-dg-column>
+      <clr-dg-column>Physical Qty</clr-dg-column>
+      <clr-dg-column>System Qty</clr-dg-column>
+      <clr-dg-column>Change</clr-dg-column>
+
+      <clr-dg-row *ngFor="let Getmismatch of getMismatchArray">
+        <clr-dg-cell>{{Getmismatch.itemId}}</clr-dg-cell>
+        <clr-dg-cell>{{Getmismatch.productName}}</clr-dg-cell>
+        <clr-dg-cell>{{Getmismatch.recordedQty}}</clr-dg-cell>
+        <clr-dg-cell
+          [ngClass]="{'positive' : Getmismatch.stockQty == Getmismatch.recordedQty, 'negative' : Getmismatch.stockQty != Getmismatch.recordedQty}">
+          {{Getmismatch.stockQty}}</clr-dg-cell>
+        <clr-dg-cell>
+          <!-- <button (click)="changeMismatchDetails(1, null)" class="btn btn-sm">Change</button> -->
+          <button (click)="openChangeAdjustmentModal(Getmismatch)" class="btn btn-sm">Change</button>
+        </clr-dg-cell>
+      </clr-dg-row>
+
+      <!-- <clr-dg-footer>
+              <clr-dg-pagination #pagination [clrDgPageSize]="10"> </clr-dg-pagination>
+            </clr-dg-footer> -->
+    </clr-datagrid>
+
+    <div class="clr-row">
+
+      <div class="clr-col-md-4">
+        <!-- <button class="btn btn-sm" (click)="closeMismatchTypeModel()">Cancel</button> -->
+        <button class="btn btn-sm" (click)="closestockAdjustmentmodal()">Done</button>
+      </div>
+    </div>
+
+  </div>
+</clr-modal>
+
+<!------------------------------ Change Stock Adjustment Modal ---------------------------->
+
+
+<clr-modal [(clrModalOpen)]="changeMismatchModal" [clrModalSize]="'lg'" [clrModalClosable]="true">
+
+  <h3 class="modal-title">Edit Mismatch Details</h3>
+  <div class="modal-body">
+    <!-- <form class="modal-form"> -->
+    <form class="clr-form clr-form-horizontal">
+
+      <clr-input-container>
+        <label>Item No</label>
+        <!-- <label [(ngModel)]="changeMismatch.stockQty" ></label> -->
+        <!-- <label [value]="changeMismatch.stockQty"></label> -->
+        <!-- <input type="text" class="form-control" id="name" required> -->
+        <label>{{ changeMismatch.itemId }}</label>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Item Name</label>
+        <label>{{ changeMismatch.productName }}</label>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Recorded Quantity</label>
+        <label>{{ changeMismatch.recordedQty }}</label>
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>InStock Quantity</label>
+        <!-- <label >{{ changeMismatch.stockQty }}</label> -->
+        <label
+          [ngClass]="{'positive' : changeMismatch.stockQty == changeMismatch.recordedQty, 'negative' : changeMismatch.stockQty != changeMismatch.recordedQty}">{{
+                  changeMismatch.stockQty }}</label>
+      </clr-input-container>
+
+
+    </form>
+
+    <form class="clr-form clr-form-horizontal">
+      <div class="clr-row">
+        <div class="clr-col-md-4">
+          <input clrInput [(ngModel)]="GetmismatchSerial.serial" name="GetmismatchSerial.serial" type="text"
+            placeholder="Enter Serial Number here" width="120px">
+        </div>
+        <div class="clr-col-md-4" *ngIf="changeMismatch.type == 2">
+          <input clrInput style width="120%" class="inline-control ng-valid ng-dirty ng-touched"
+            [(ngModel)]="GetmismatchSerial.qty" name="GetmismatchSerial.qty" type="number"
+            placeholder="Enter Item Quantity here" width="120px">
+        </div>
+        <div class="clr-col-md-4">
+          <button class="btn btn-sm" (click)="addSerial(1,GetmismatchSerial)">Add</button>
+        </div>
+      </div>
+    </form>
+
+
+    <clr-datagrid>
+      <clr-dg-column>Serial No</clr-dg-column>
+      <clr-dg-column>Recorded Qty</clr-dg-column>
+      <clr-dg-column>InStock Qty</clr-dg-column>
+      <clr-dg-column>Action</clr-dg-column>
+
+      <!-- <clr-dg-row *ngFor="let GetmismatchSerial of getMismatchSerialArray"> -->
+      <clr-dg-row *clrDgItems="let GetmismatchSerial of getMismatchSerialArray" [clrDgItem]="GetmismatchSerial">
+
+        <!-- <clr-dg-action-overflow *ngIf="changeMismatch.type == 2 && changeMismatch.stockQty != 0 ">
+          <button class="action-item" (click)="onEdit(GetmismatchSerial)">Edit</button> -->
+          <!-- <button class="action-item" (click)="onDelete(user)">Delete</button> -->
+        <!-- </clr-dg-action-overflow> -->
+        <!-- <clr-dg-row *ngFor="let GetmismatchSerial of MismatchList"> -->
+        <clr-dg-cell>{{GetmismatchSerial.serial}}</clr-dg-cell>
+        <clr-dg-cell>{{GetmismatchSerial.recordedQty}}</clr-dg-cell>
+        <clr-dg-cell>{{GetmismatchSerial.stockQty}}</clr-dg-cell>
+        <clr-dg-cell>
+           <button (click)="removeSerial(1,GetmismatchSerial)" class="btn btn-sm">Remove</button>
+           <button (click)="onEdit(GetmismatchSerial)" class="btn btn-sm" >Edit</button>
+          <!-- <button *ngIf="GetmismatchSerial.recordedQty > GetmismatchSerial.stockQty"
+            (click)="removeSerial(1,GetmismatchSerial)" class="btn btn-sm">Remove</button>
+          <button *ngIf="GetmismatchSerial.recordedQty < GetmismatchSerial.stockQty"
+            (click)="addSerial(1,GetmismatchSerial)" class="btn btn-sm">Add</button> -->
+
+          <!-- <button *ngIf="GetmismatchSerial.status==0" (click)="removeSerial(1,GetmismatchSerial)" class="btn btn-sm">Remove</button>
+                <button *ngIf="GetmismatchSerial.status==2" (click)="addSerial(1,GetmismatchSerial)" class="btn btn-sm">Add</button>
+               -->
+
+        </clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-footer>
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
+          <!-- {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+              of {{pagination.totalItems}} -->
+        </clr-dg-pagination>
+      </clr-dg-footer>
+    </clr-datagrid>
+    <div class="clr-row">
+
+      <div class="clr-col-md-4">
+        <!-- <button class="btn btn-sm" (click)="closeMismatchTypeModel()">Cancel</button> -->
+        <button class="btn btn-sm" (click)="closeStockAdjustmentModel()">Done</button>
+      </div>
+    </div>
+  </div>
+</clr-modal>
+
+<!--*****************************Edit Qty Modal  ******************************-->
+
+<clr-modal [(clrModalOpen)]="editQtyModal" [clrModalSize]="'md'" [clrModalClosable]="true">
+
+  <h3 class="modal-title">Edit Quantity</h3>
+  <div class="modal-body">
+    <form class="clr-form clr-form-horizontal">
+
+      <clr-input-container>
+        <label>InStock Quantity</label>
+        <!-- <label >{{ changeMismatch.stockQty }}</label> -->
+        <input clrInput [(ngModel)]="GetmismatchSerial.qty" class="inline-control ng-valid ng-dirty ng-touched"
+          name="GetmismatchSerial.qty" type="number" placeholder="Enter InStock Quantity here">
+      </clr-input-container>
+      <div class="clr-row">
+        <div class="clr-col-md-4">
+          <button class="btn btn-sm" (click)="saveStockQty(GetmismatchSerial)">Done</button>
+        </div>
+      </div>
+
+
+    </form>
+
+
+  </div>
+</clr-modal>

@@ -1,0 +1,124 @@
+<clr-main-container>
+     <!-- <app-header></app-header> -->
+     <clr-header *ngIf="router.url != '/login'">
+          <app-header style="width: 100%"></app-header>
+     </clr-header>
+     <!-- <nav class="subnav" [clr-nav-level]="1">
+      ...
+  </nav> -->
+     <div class="content-container">
+          <div class="content-area">
+
+               <router-outlet></router-outlet>
+
+          </div>
+
+          <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/login'"
+               [(clrVerticalNavCollapsed)]="collapsed">
+               <a clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
+                    <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+                    Operational Dashboard
+               </a>
+               <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/strategic-dashboard']" class="nav-link">
+                    <clr-icon clrVerticalNavIcon shape="line-chart" size="24"></clr-icon>Strategic Dashboard
+               </a>
+
+               <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
+                    <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> User Maintenance
+               </a>
+
+               <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/order-accept']" class="nav-link">
+                    <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> Order Accept
+               </a>
+
+          </clr-vertical-nav>
+
+
+          <!-- <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/login'" [(clrVerticalNavCollapsed)]="collapsed" >
+      <a *ngIf="util.validateUserMenu('Dashboard')" clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
+          <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+          Operational Dashboard
+      </a>
+      <a routerLinkActive="active"  clrVerticalNavLink [routerLink]="['/strategic-dashboard']" class="nav-link">
+        <clr-icon clrVerticalNavIcon shape="line-chart" size="24"></clr-icon>Strategic Dashboard
+    </a>
+      <a routerLinkActive="active"  clrVerticalNavLink [routerLink]="['/grn-accept']" class="nav-link">
+          <clr-icon clrVerticalNavIcon shape="list" size="24"></clr-icon>GRN Accept
+      </a>
+      <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/stock-details']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="blocks-group" size="24"></clr-icon>  Stock Details
+      </a> 
+      <a *ngIf="util.validateUserMenu('UserMaintain')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon>  User Maintenance
+      </a>
+      <a  *ngIf="util.validateUserMenu('MismatchUpdate')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/mismatch-update']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="balance" size="24"></clr-icon>  Mismatch Update
+      </a>                
+      <a *ngIf="util.validateUserMenu('BusinessStruct')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/business-structure']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="map" size="24"></clr-icon>   Business Structure
+      </a>
+      <a *ngIf="util.validateUserMenu('ReaderMaintain')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/reader-maintenance']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="network-switch" size="24"></clr-icon>  Reader Maintenance
+      </a>
+      <a *ngIf="util.validateUserMenu('AntennaMaintain')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/antenna-maintenance']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="wifi" size="24"></clr-icon>  Antenna Maintenance
+      </a>
+      <a *ngIf="util.validateUserMenu('Verfication')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/verfication']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="success-standard" size="24"></clr-icon>  Verification
+      </a>
+      
+      <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/verification']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="success-standard" size="24"></clr-icon>  Verification
+      </a>
+      <a *ngIf="util.validateUserMenu('CustomReport')" clrVerticalNavLink routerLinkActive="active" [routerLink]="['/custom-report']" class="nav-link">
+           <clr-icon clrVerticalNavIcon shape="resource-pool" size="24"></clr-icon>  Custom Report
+      </a>
+      </clr-vertical-nav> -->
+          <!-- <nav class="sidenav" [clr-nav-level]="1">
+          ...
+      </nav> -->
+
+          <!-- <nav class="sidenav"  style="background:#04101a;" *ngIf="router.url != '/login'" [clr-nav-level]="1">
+          <section class="sidenav-content">
+
+              <a *ngIf="util.validateUserMenu('Dashboard')" routerLinkActive="active" [routerLink]="['/dashboard']" class="nav-link">
+                  <div style="vertical-align: middle"> <clr-icon shape="home" size="24"></clr-icon>  Home    </div>
+                 
+              </a>
+              <a routerLinkActive="active" [routerLink]="['/grn-accept']" class="nav-link">
+                   <clr-icon shape="list" size="24"></clr-icon>  GRN Accept
+              </a>
+              <a routerLinkActive="active" [routerLink]="['/stock-details']" class="nav-link">
+                   <clr-icon shape="blocks-group" size="24"></clr-icon>  Stock Details
+              </a> 
+              <a *ngIf="util.validateUserMenu('UserMaintain')" routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
+                   <clr-icon shape="users" size="24"></clr-icon>  User Maintenance
+              </a>
+              <a  *ngIf="util.validateUserMenu('MismatchUpdate')" routerLinkActive="active" [routerLink]="['/mismatch-update']" class="nav-link">
+                   <clr-icon shape="balance" size="24"></clr-icon>  Mismatch Update
+              </a>                
+              <a *ngIf="util.validateUserMenu('BusinessStruct')" routerLinkActive="active" [routerLink]="['/business-structure']" class="nav-link">
+                   <clr-icon shape="map" size="24"></clr-icon>   Business Structure
+              </a>
+              <a *ngIf="util.validateUserMenu('ReaderMaintain')" routerLinkActive="active" [routerLink]="['/reader-maintenance']" class="nav-link">
+                   <clr-icon shape="network-switch" size="24"></clr-icon>  Reader Maintenance
+              </a>
+              <a *ngIf="util.validateUserMenu('AntennaMaintain')" routerLinkActive="active" [routerLink]="['/antenna-maintenance']" class="nav-link">
+                   <clr-icon shape="wifi" size="24"></clr-icon>  Antenna Maintenance
+              </a>
+              <a *ngIf="util.validateUserMenu('Verfication')" routerLinkActive="active" [routerLink]="['/verfication']" class="nav-link">
+                   <clr-icon shape="success-standard" size="24"></clr-icon>  Verification
+              </a>
+              
+              <a routerLinkActive="active" [routerLink]="['/verification']" class="nav-link">
+                   <clr-icon shape="success-standard" size="24"></clr-icon>  Verification
+              </a>
+              <a *ngIf="util.validateUserMenu('CustomReport')" routerLinkActive="active" [routerLink]="['/custom-report']" class="nav-link">
+                   <clr-icon shape="resource-pool" size="24"></clr-icon>  Custom Report
+              </a>
+              
+          </section>
+      </nav> -->
+
+     </div>
+</clr-main-container>

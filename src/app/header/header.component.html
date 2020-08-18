@@ -1,0 +1,26 @@
+<header class="header-6" style="background-color: #6BC331">
+  <div class="branding" style="padding-left: 0;">
+    <a class="nav-link" style="display: flex; align-items: end;">
+      <img class="app-logo" src="/assets/images/agro-cropes.png">
+      <div>
+        <div class="app-title">Agro Cropes Sales System</div>
+        <div class="app-sub-title">Agro Cropes (Pvt) Ltd</div>
+      </div>
+    </a>
+  </div>
+  <div class="header-actions">
+     
+    <clr-dropdown >
+      <button class="nav-text" clrDropdownTrigger style="color: rgb(255, 255, 255)">
+       <clr-icon shape="user"></clr-icon>&nbsp;
+        {{username}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a href="" clrDropdownItem type="" (click)="logout()" style="font-size: 11px">
+          <clr-icon shape="logout"></clr-icon>
+          &nbsp;Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>
