@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, UserInterface } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router'
 import { auth } from 'firebase';
 
@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   password = "";
   message = '';
   errorMsg = ''; //validation error handle
-  public userInterface = new UserInterface();
+  // public userInterface = new User();
 
 
   error: { name: string, message: string } = { name: '', message: '' }; //firebase error handle
@@ -27,20 +27,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  register() {
-    this.clearErrorMsg();
-    console.log("userInterface---->>>>",this.userInterface);
-    if (this.validateForm(this.userInterface.email, this.userInterface.password)) {
-      this.authservice.registerWithEmail(this.userInterface).then(() => {
-        this.message = "Succssfully registered."
-        this.userInterface = new UserInterface();
-      }).catch(_error => {
-        this.error = _error
-        this.router.navigate(['/register'])
-      })
-    }
+  // register() {
+  //   this.clearErrorMsg();
+  //   console.log("userInterface---->>>>",this.userInterface);
+  //   if (this.validateForm(this.userInterface.email, this.userInterface.password)) {
+  //     this.authservice.registerWithEmail(this.userInterface).then(() => {
+  //       this.message = "Succssfully registered."
+  //       this.userInterface = new UserInterface();
+  //     }).catch(_error => {
+  //       this.error = _error
+  //       this.router.navigate(['/register'])
+  //     })
+  //   }
     
-  }
+  // }
 
   validateForm(email, password) {
     if (email.lenght === 0) {

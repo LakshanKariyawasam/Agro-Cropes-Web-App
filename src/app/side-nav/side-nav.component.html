@@ -1,51 +1,23 @@
-
 <nav class="sidenav" style="background:#04101a;">
-    <section class="sidenav-content">
-      <a [routerLink]="['/batch-creation']" class="nav-link active">
-        Dashboard
+  <section class="sidenav-content">
+    <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/register'"
+      [(clrVerticalNavCollapsed)]="collapsed">
+      <a clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
+        <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+        Operational Dashboard
       </a>
-      <a href="..." class="nav-link">
-        Monitor
+      <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/strategic-dashboard']" class="nav-link">
+        <clr-icon clrVerticalNavIcon shape="line-chart" size="24"></clr-icon>Strategic Dashboard
       </a>
-      <a href="..." class="nav-link">
-        User Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Mismatch Update
-      </a>
-      <a href="..." class="nav-link">
-        Business Structure
-      </a>
-      <a href="..." class="nav-link">
-        Reader Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Antenna Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Container Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Unit Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Item Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Batch Maintenance
-      </a>
-      <a href="..." class="nav-link">
-        Production Start
-      </a>
-      <a href="..." class="nav-link">
-        Verification
-      </a>
-      <a href="..." class="nav-link">
-        Custom Report
-      </a>
-    </section>
-  </nav>
 
+      <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
+        <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> User Maintenance
+      </a>
 
+      <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/order-accept']" class="nav-link">
+        <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> Order Accept
+      </a>
 
-  
+    </clr-vertical-nav>
+  </section>
+</nav>

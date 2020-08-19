@@ -29,15 +29,13 @@ export class LoginComponent implements OnInit {
     this.clearErrorMessage();
     if (this.validateForm(this.email, this.password)) {
       this.loadingMask = true;
-      this.authservice.loginWithEmail(this.email, this.password)
+      this.authservice.SignIn(this.email, this.password)
         .then(() => {
           this.loadingMask = false;
           this.router.navigate(['/operational-dashboard'])
-        }).catch(_error => {
+        }).catch(error => {
           this.loadingMask = false;
-          this.error = _error
-          this.errorMsg = "Cannot connect to server: ", this.error;
-          this.router.navigate(['/login'])
+          this.errorMsg = "Cannot connect to server: ", error;
         })
     }
     // this.router.navigate(['/dashboard']);

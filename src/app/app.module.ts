@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ClarityModule } from "@clr/angular";
-import { routing } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
 // import { ChartModule } from 'angular-highcharts';
 import { ChartsModule } from 'ng2-charts';
@@ -77,6 +77,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrderAcceptComponent } from './order-accept/order-accept.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+
+import { AuthService } from "./services/auth.service";
 
 // 2. Add your credentials from step 1
 const config = {
@@ -125,13 +129,15 @@ const cubejsOptions = {
     OperationalDashboardComponent,
     StrategicDashboardComponent,
     OrderAcceptComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,
     ClarityModule,
     BrowserAnimationsModule,
-    routing,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ChartsModule,
@@ -157,7 +163,7 @@ const cubejsOptions = {
     AngularFireDatabaseModule
   ],
   providers: [UtilService, MdecodeService,
-    LoggedInUserModel, GroupModel, FunctionModel, MessageService, GrowlService],
+    LoggedInUserModel, GroupModel, FunctionModel, MessageService, GrowlService, AuthService],
   bootstrap: [AppComponent, StrategicDashboardComponent]
 })
 
