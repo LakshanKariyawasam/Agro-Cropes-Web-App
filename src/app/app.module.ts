@@ -80,6 +80,11 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+
 import { AuthService } from "./services/auth.service";
 
 // 2. Add your credentials from step 1
@@ -160,15 +165,22 @@ const cubejsOptions = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [UtilService, MdecodeService,
     LoggedInUserModel, GroupModel, FunctionModel, MessageService, GrowlService, AuthService],
-  bootstrap: [AppComponent, StrategicDashboardComponent]
+  bootstrap: [AppComponent, StrategicDashboardComponent],
+  exports: [BsDropdownModule, TooltipModule, ModalModule]
 })
 
 // , { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }
 export class AppModule { }
+
+export class AppBootstrapModule {}
 
 export const AppParams = Object.freeze({
 

@@ -1,37 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~angular-tree-component/dist/angular-tree-component.css';
 
-.header, .header.header-1, header, header.header-1{
-    background-color:#002538;
+@import '~angular-tree-component/dist/angular-tree-component.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.header,
+.header.header-1,
+header,
+header.header-1 {
+    background-color: #002538;
 }
 
-.main-container .header-hamburger-trigger, .main-container .header-overflow-trigger{
+.main-container .header-hamburger-trigger,
+.main-container .header-overflow-trigger {
     /* width: 100%; */
     /* right: -10px; */
 }
+
 .page-title {
     font-size: 25px;
     margin-top: -10px;
     margin-bottom: 5px;
 }
 
-.ui-picklist.ui-picklist-responsive .ui-picklist-buttons button{
+.ui-picklist.ui-picklist-responsive .ui-picklist-buttons button {
     background: #3977b8;
     border: none;
 }
 
-.ui-picklist .ui-picklist-caption{
+.ui-picklist .ui-picklist-caption {
     background: #45607f;
     color: #fff;
 }
 
-
-.ui-picklist-source-controls.ui-picklist-buttons.ng-star-inserted{
+.ui-picklist-source-controls.ui-picklist-buttons.ng-star-inserted {
     display: none;
 }
 
-.ui-picklist-target-controls.ui-picklist-buttons.ng-star-inserted{
+.ui-picklist-target-controls.ui-picklist-buttons.ng-star-inserted {
     display: none;
 }
 
 // "bootstrap": "^4.3.1",
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

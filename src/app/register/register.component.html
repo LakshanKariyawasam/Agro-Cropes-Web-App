@@ -3,21 +3,15 @@
 <div class="register-container">
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-4">
-            <div class="col-12">
-                <div class="welcome-msg">Register</div>
-            </div>
-        </div>
-        <div class="col-7">
-            <div class="col-12">
-                <br>
-                <span class="app-title">Agro Cropes Sales System</span>
-            </div>
+        <div class="col-11">
+            <div>Register to </div>
+            <div class="app-title" style="float:left;">Agro Cropes Sales System</div>
         </div>
     </div>
+    <div class="space"></div>
     <div class="row">
         <div class="col-4">
-            <img class="register-brand" style="margin-left: 18%;margin-top: 23%;" src="/assets/images/agro-cropes.png">
+            <img class="register-brand" style="margin-left: 18%;" src="/assets/images/agro-cropes.png">
         </div>
         <div class="col-1"></div>
 
@@ -28,63 +22,50 @@
                     <div class="row">
 
                         <div class="form-group" class="col-5">
-                            <input type="text" [(ngModel)]="userInterface.firstName" name="userInterface.firstName"
-                                class="form-control" id="first_Name" placeholder="First Name"
-                                style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);"
-                                required>
+                            <input type="text" class="form-control" id="first_Name" placeholder="First Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
-                        <br>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-5">
-                            <input type="text" [(ngModel)]="userInterface.lastName" name="userInterface.lastName"
-                                class="form-control" id="last_Name" placeholder="Last Name"
-                                style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);"
-                                required>
+                            <input type="text" class="form-control" id="last_Name" placeholder="Last Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
-                        <br>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="text" [(ngModel)]="userInterface.contactNo" name="userInterface.contactNo"
-                                class="form-control" id="contactNo" placeholder="Contact No"
-                                style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);"
-                                required>
+                            <input type="text" class="form-control" id="contactNo" placeholder="Contact No" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
-                        <br>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="text" [(ngModel)]="userInterface.email" name="userInterface.email"
-                                class="form-control" id="register_email" placeholder="E-mail"
-                                style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);"
-                                required>
+                            <input type="text" class="form-control" id="register_email" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
-                        <br>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="password" [(ngModel)]="userInterface.password" name="userInterface.password"
-                                class="form-control" id="register_password" placeholder="Password"
-                                style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);"
-                                required>
+                            <input type="password" class="form-control" id="register_password" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
-                        <br>
                         <br>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-3">
                             <br>
-                            <button type="submit" class="btn btn-primary register-btn"
-                                style="margin-top: -50px;">Register</button>
+                            <button type="submit" class="btn btn-primary register-btn" style="font-family:monospace;font-size: medium;margin-top: -50px;">Register</button>
                         </div>
-                        <div class="col-3">
-                            <div class="register"><a href="#" routerLink="/login">Back To Login</a></div>
+                        <div class="register"><a href="#" routerLink="/login" style="font-family:monospace;font-size: medium; margin-top: -50px;">Back To Login</a></div>
+
+                    </div> -->
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary register-btn" style="font-size: initial;font-family: revert;margin-left: 1px;">Register</button>
+                        </div>
+                        <div class="col-4">
+                            <div><a href="#" routerLink="/login" style="font-size: initial;font-family: revert;margin-left: 13px;">Back To Login</a></div>
                         </div>
                     </div>
                 </form>
