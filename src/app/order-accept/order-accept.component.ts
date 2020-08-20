@@ -17,23 +17,37 @@ export class OrderAcceptComponent implements OnInit {
 
   error: { name: string, message: string } = { name: '', message: '' }; //firebase error handle
 
-  orderList: any[];
+  orderData: any[];
+
+  public date: string;
 
   constructor(private router: Router, private ordersrvice: OrderService) { }
 
   ngOnInit() {
+    var today = new Date();
+    this.date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
     this.getOrderList();
   }
 
   getOrderList() {
     this.loadingMask = true;
-    this.ordersrvice.getOrderList()
-      .snapshotChanges().subscribe(books => {
-        books.forEach(item => {
+    this.ordersrvice.getOrderList(this.date)
+      .snapshotChanges().subscribe(orders => {
+        this.loadingMask = false;
+        orders.forEach(item => {
           let a = item.payload.toJSON();
           a['$key'] = item.key;
-          console.log("a ::: ", a);
-          // this.orderList.push(a as Book)
+          // this.orderData.push(a as Order)
+          console.log("a one ::: ", a);
+          // this.ordersrvice.getVendorName(a['userId'])
+          //   .snapshotChanges().subscribe(customers => {
+          //     // a['name'] = customers.name;
+          //     console.log("customers name ::: ",customers );
+          //     this.loadingMask = false;
+          //   });
+          console.log("a two ::: ", a);
+          // this.orderData.push(a as Order)
         })
         // /* Data table */
         // this.dataSource = new MatTableDataSource(this.BookData);

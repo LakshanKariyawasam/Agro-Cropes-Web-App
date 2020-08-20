@@ -36,9 +36,9 @@ export class DashboardService {
         return this.http.get(url);
       }
 
-      public getStockQty(){
-        return this.http.get<ResponseWrapper<StockQty>>(AppParams.BASE_PATH + "dashboard/getStockDetails");
-    }
+    //   public getStockQty(){
+    //     return this.http.get<ResponseWrapper<StockQty>>(AppParams.BASE_PATH + "dashboard/getStockDetails");
+    // }
 
     public getTransaction(){
         return this.http.get<ResponseWrapper<Transaction>>(AppParams.BASE_PATH + "dashboard/getTransSummaryForBarCode");
