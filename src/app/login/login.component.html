@@ -24,21 +24,21 @@
         <div class="col-6">
 
             <div class="login-container" style="margin-top: 50px;">
-                <form (ngSubmit)="login()">
+                <form>
                     <!-- <div class="row"> -->
 
                     <div class="form-group" class="col-8">
-                        <input type="text" [(ngModel)]="email" name="email" class="form-control" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        <input type="text" class="form-control" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" #email required>
                     </div>
                     <br>
                     <div class="form-group" class="col-8">
-                        <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                        <input type="password" class="form-control" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" #password required>
                     </div>
                     <!-- </div> -->
 
                     <div class="row">
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary login-btn" style="font-size: initial;font-family: revert;margin-left: 13px;">LOGIN</button>
+                            <button type="submit" class="btn btn-primary login-btn" style="font-size: initial;font-family: revert;margin-left: 13px;" (click)="signIn(email.value,password.value)">LOGIN</button>
                         </div>
                         <div class="col-4">
                             <div class="register"><a href="#" routerLink="/register" style="font-size: initial;font-family: revert;margin-left: 13px;">New User Register</a></div>
@@ -56,9 +56,9 @@
                     <div class="alert-items">
                         <div class="alert-item static">
                             <div class="alert-icon-wrapper">
-                                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                                <clr-icon class="alert-icon" shape="exclamation-circle" style="font-size: smaller;color: red;"></clr-icon>
                             </div>
-                            <span class="alert-text">{{errorMsg}}</span>
+                            <span class="alert-text " style="font-size: smaller;color:red;margin-top: 7px;">{{errorMsg}}</span>
                         </div>
                     </div>
                 </div>

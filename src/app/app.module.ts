@@ -47,7 +47,7 @@ import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
 import { OperationalDashboardComponent } from './operational-dashboard/operational-dashboard.component';
 import { StrategicDashboardComponent } from './strategic-dashboard/strategic-dashboard.component';
 
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgxFontAwesomeModule } from 'ngx-font-awesome';
 
 import { CubejsClientModule } from '@cubejs-client/ngx';
@@ -83,7 +83,6 @@ import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 
 import { AuthService } from "./services/auth.service";
 
@@ -169,7 +168,8 @@ const cubejsOptions = {
     BrowserModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [UtilService, MdecodeService,
     LoggedInUserModel, GroupModel, FunctionModel, MessageService, GrowlService, AuthService],

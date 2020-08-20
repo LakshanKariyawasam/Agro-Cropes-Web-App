@@ -25,21 +25,31 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
+
+  signIn(email, password) {
     this.clearErrorMessage();
-    if (this.validateForm(this.email, this.password)) {
-      this.loadingMask = true;
-      this.authservice.SignIn(this.email, this.password)
-        .then(() => {
-          this.loadingMask = false;
-          this.router.navigate(['/operational-dashboard'])
-        }).catch(error => {
-          this.loadingMask = false;
-          this.errorMsg = "Cannot connect to server: ", error;
-        })
+    if (this.validateForm(email, password)) {
+      this.authservice.SignIn(email, password).catch(() => {
+        this.errorMsg = "Wrong password or this account not approved yet.";
+      });
     }
-    // this.router.navigate(['/dashboard']);
   }
+
+  // login() {
+  //   this.clearErrorMessage();
+  //   if (this.validateForm(this.email, this.password)) {
+  //     this.loadingMask = true;
+  //     this.authservice.SignIn(this.email, this.password)
+  //       .then(() => {
+  //         this.loadingMask = false;
+  //         this.router.navigate(['/operational-dashboard'])
+  //       }).catch(error => {
+  //         this.loadingMask = false;
+  //         this.errorMsg = "Cannot connect to server: ", error;
+  //       })
+  //   }
+  //   // this.router.navigate(['/dashboard']);
+  // }
 
   validateForm(email, password) {
 

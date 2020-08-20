@@ -1,40 +1,39 @@
 <clr-main-container>
-     <!-- <app-header></app-header> -->
-     <clr-header *ngIf="!(router.url === '/register' || router.url === '/login' || router.url === '/forgot-password')">
-          <app-header style="width: 100%"></app-header>
-     </clr-header>
-     <!-- <nav class="subnav" [clr-nav-level]="1">
+    <!-- <app-header></app-header> -->
+    <clr-header *ngIf="!(router.url === '/register' || router.url === '/login' || router.url === '/forgot-password' || router.url=== '/verify-email-address')">
+        <app-header style="width: 100%"></app-header>
+    </clr-header>
+    <!-- <nav class="subnav" [clr-nav-level]="1">
       ...
   </nav> -->
-     <div class="content-container">
-          <div class="content-area">
+    <div class="content-container">
+        <div class="content-area">
 
-               <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
 
-          </div>
+        </div>
 
-          <clr-vertical-nav [clrVerticalNavCollapsible]="true"
-               *ngIf="!(router.url === '/register' || router.url === '/login' || router.url === '/forgot-password')" [(clrVerticalNavCollapsed)]="collapsed">
-               <a clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
-                    <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
-                    Operational Dashboard
-               </a>
-               <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/strategic-dashboard']" class="nav-link">
-                    <clr-icon clrVerticalNavIcon shape="line-chart" size="24"></clr-icon>Strategic Dashboard
-               </a>
+        <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="!(router.url === '/register' || router.url === '/login' || router.url === '/forgot-password' || router.url=== '/verify-email-address')" [(clrVerticalNavCollapsed)]="collapsed">
+            <a clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
+                <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
+                Operational Dashboard
+            </a>
+            <a routerLinkActive="active" clrVerticalNavLink [routerLink]="['/strategic-dashboard']" class="nav-link">
+                <clr-icon clrVerticalNavIcon shape="line-chart" size="24"></clr-icon>Strategic Dashboard
+            </a>
 
-               <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
-                    <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> User Maintenance
-               </a>
+            <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/user-maintenance']" class="nav-link">
+                <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> User Maintenance
+            </a>
 
-               <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/order-accept']" class="nav-link">
-                    <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> Order Accept
-               </a>
+            <a clrVerticalNavLink routerLinkActive="active" [routerLink]="['/order-accept']" class="nav-link">
+                <clr-icon clrVerticalNavIcon shape="users" size="24"></clr-icon> Order Accept
+            </a>
 
-          </clr-vertical-nav>
+        </clr-vertical-nav>
 
 
-          <!-- <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/login'" [(clrVerticalNavCollapsed)]="collapsed" >
+        <!-- <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/login'" [(clrVerticalNavCollapsed)]="collapsed" >
       <a *ngIf="util.validateUserMenu('Dashboard')" clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
           <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
           Operational Dashboard
@@ -74,11 +73,11 @@
            <clr-icon clrVerticalNavIcon shape="resource-pool" size="24"></clr-icon>  Custom Report
       </a>
       </clr-vertical-nav> -->
-          <!-- <nav class="sidenav" [clr-nav-level]="1">
+        <!-- <nav class="sidenav" [clr-nav-level]="1">
           ...
       </nav> -->
 
-          <!-- <nav class="sidenav"  style="background:#04101a;" *ngIf="router.url != '/login'" [clr-nav-level]="1">
+        <!-- <nav class="sidenav"  style="background:#04101a;" *ngIf="router.url != '/login'" [clr-nav-level]="1">
           <section class="sidenav-content">
 
               <a *ngIf="util.validateUserMenu('Dashboard')" routerLinkActive="active" [routerLink]="['/dashboard']" class="nav-link">
@@ -120,5 +119,5 @@
           </section>
       </nav> -->
 
-     </div>
+    </div>
 </clr-main-container>

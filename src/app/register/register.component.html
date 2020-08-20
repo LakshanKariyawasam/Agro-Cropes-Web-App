@@ -18,35 +18,35 @@
         <div class="col-7">
 
             <div class="register-container">
-                <form (ngSubmit)="register()">
+                <form>
                     <div class="row">
 
                         <div class="form-group" class="col-5">
-                            <input type="text" class="form-control" id="first_Name" formControlName="firstName" placeholder="First Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                            <input type="text" class="form-control" placeholder="First Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-5">
-                            <input type="text" class="form-control" id="last_Name" formControlName="lastName" placeholder="Last Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                            <input type="text" class="form-control" placeholder="Last Name" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="text" class="form-control" id="contactNo" formControlName="contactNo" placeholder="Contact No" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                            <input type="text" class="form-control" placeholder="Contact No" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="text" class="form-control" id="register_email" formControlName="email" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                            <input type="text" class="form-control" placeholder="E-mail" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" #userEmail required>
                         </div>
                         <br>
                         <br>
 
                         <div class="form-group" class="col-10">
-                            <input type="password" formControlName="password" class="form-control" id="register_password" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" required>
+                            <input type="password" class="form-control" placeholder="Password" style="margin-top: -30px;margin-bottom: 5%;height: calc(1.2em + .75rem + 2px);" #userPwd required>
                         </div>
                         <br>
                     </div>
@@ -62,7 +62,7 @@
 
                     <div class="row">
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary register-btn" style="font-size: initial;font-family: revert;margin-left: 1px;">Register</button>
+                            <button type="submit" class="btn btn-primary register-btn" style="font-size: initial;font-family: revert;margin-left: 1px;" (click)="signUp(userEmail.value, userPwd.value)">Register</button>
                         </div>
                         <div class="col-4">
                             <div><a href="#" routerLink="/login" style="font-size: initial;font-family: revert;margin-left: 13px;">Back To Login</a></div>

@@ -39,8 +39,22 @@ export class RegisterComponent implements OnInit {
   //       this.router.navigate(['/register'])
   //     })
   //   }
-    
+
   // }
+
+  signUp(userEmail, userPwd) {
+
+    this.email =userEmail;
+    this.password = userPwd;
+
+    this.clearErrorMsg();
+    if (this.validateForm( this.email, this.password)) {
+      this.authservice.SignUp(userEmail, userPwd).catch((error) => {
+        this.errorMsg = error;
+      });
+      // this.message = "Succssfully registered."
+    }
+  }
 
   validateForm(email, password) {
     if (email.lenght === 0) {
@@ -60,6 +74,7 @@ export class RegisterComponent implements OnInit {
     this.errorMsg = '';
     return true;
   }
+
 
   clearErrorMsg() {
     this.errorMsg = '';

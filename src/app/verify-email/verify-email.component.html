@@ -1,5 +1,5 @@
 <div class="displayTable">
-    <div class="displayTableCell">
+    <!-- <div class="displayTableCell">
 
         <div class="authBlock">
             <h3>Thank You for Registering</h3>
@@ -8,20 +8,51 @@
                 <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
                 <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
             </div>
-
-            <!-- Calling SendVerificationMail() method using authService Api -->
             <div class="formGroup">
-                <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()">
-                    <i class="fas fa-redo-alt"></i>
-                    Resend Verification Email
-                </button>
+                <button type="button" class="btn btnPrimary" (click)="authService.SendVerificationMail()"><i class="fas fa-redo-alt" style="font-size: initial;font-family: revert;"></i>Resend Verification Email</button>
             </div>
 
         </div>
 
         <div class="redirectToLogin">
-            <span>Go back to?<span class="redirect" routerLink="/login"> Sign in</span></span>
+            <span>Go back to?<span class="redirect" routerLink="/login" style="font-size: initial;font-family: revert;"> Sign in</span></span>
         </div>
 
+    </div> -->
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <span style="font-size: 38px;margin-left: 10%;">Thank You for Registering</span>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <br>
+                    <div class="formGroup" *ngIf="authService.userData as user">
+                        <p class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+                        <p class="text-center">Please check your email and click on the link to verfiy your email address.</p>
+                    </div>
+                    <div class="space"></div>
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary" (click)="authService.SendVerificationMail()" style="font-family:monospace;font-size: medium;">Resend Verification Email</button>
+                        </div>
+                        <div class="col-4">
+                            <div><a href="#" routerLink="/login" style="font-size: initial;font-family: revert;margin-left:50px;">Back To Login</a></div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="col-3"></div>
     </div>
 </div>

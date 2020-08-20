@@ -39,20 +39,15 @@ export class AuthService {
     SignIn(email, password) {
         return this.afAuth.signInWithEmailAndPassword(email, password)
             .then((result) => {
-                this.SetUserData(result.user);
+                this.loadingMask = false;
+                this.router.navigate(['/operational-dashboard'])
+                // this.SetUserData(result.user);
             }).catch((error) => {
-                throw error
-                // window.alert(error.message)
+                this.loadingMask = false;
+                // this.errorMsg = "Cannot connect to server: ", error;
+                // console.log("this.errorMsg---->>>", this.errorMsg);
+                throw error;
             })
-
-        // .then((user) => {
-        //     this.authState = user;
-        //     console.log("authState ::: ", this.authState);
-        // })
-        // .catch(error => {
-        //     console.log(error)
-        //     throw error
-        // });
     }
 
     // Sign up with email/password
@@ -64,7 +59,8 @@ export class AuthService {
                 this.SendVerificationMail();
                 this.SetUserData(result.user);
             }).catch((error) => {
-                window.alert(error.message)
+                // window.alert(error.message)
+                throw error.message;
             })
     }
 
@@ -120,7 +116,7 @@ export class AuthService {
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
-            contactNo:user.contactNo,
+            contactNo: user.contactNo,
             photoURL: user.photoURL,
             emailVerified: user.emailVerified
         }
