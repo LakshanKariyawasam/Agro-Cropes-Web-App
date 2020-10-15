@@ -77,12 +77,8 @@ export class UserMaintenanceComponent implements OnInit {
 
 
   addUser() {
-    //this.loadingMask = false;
-    // console.log("selectedUsersList: ", this.)
     this.validateUserForm();
     if (this.userValidationArray.length == 0) {
-      // let header: Headers = new Headers();
-      // let option: RequestOptionsArgs = new RequestOptions();
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -96,16 +92,6 @@ export class UserMaintenanceComponent implements OnInit {
           'division':'DMSSW'
         })
       };
-
-      // header.set("system", "DMSRFID");
-      // header.set("countryCode", "LK");
-      // header.set("room", "DefaultRoom");
-      // header.set("organization", "DMS");
-      // header.set("department", "DefaultDepartment");
-      // header.set("branch", "HeadOffice");
-      // header.set("userId", this.utilService.getLoggedInData()[0].userId);
-      // header.set("division", "DMSSW");
-      // option.headers = header;
 
       let arrGrps = [];
       console.log("this.selectedUserGroups", this.selectedUserGroups);
@@ -361,30 +347,16 @@ export class UserMaintenanceComponent implements OnInit {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'system': 'DMSRFID',
+        'system': 'PDSASD',
         'countryCode':'LK',
         'room':'DefaultRoom',
-        'organization':'DMS',
+        'organization':'NIBM',
         'department':'DefaultDepartment',
         'branch':'HeadOffice',
-        'userId': this.utilService.getLoggedInData()[0].userId,
-        'division':'DMSSW'
+        'division':'MIS'
       })
     };
-    // let header: Headers = new Headers();
-    // let option: RequestOptionsArgs = new RequestOptions();
 
-    // header.set("system", "DMSRFID");
-    // header.set("countryCode", "LK");
-    // header.set("room", "DefaultRoom");
-    // header.set("organization", "DMS");
-    // header.set("department", "DefaultDepartment");
-    // header.set("branch", "HeadOffice");
-    // header.set("userId", this.utilService.getLoggedInData()[0].userId);
-    // header.set("division", "DMSSW");
-    // option.headers = header;
-
-    // test
     this.userService.getAllUsers(this.utilService.getLoggedInData()[0].userId).subscribe(res => {
       console.log("user resss ", res.body.data);
       this.usersList = res.body.data;

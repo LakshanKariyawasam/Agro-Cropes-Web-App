@@ -164,36 +164,9 @@ export class AppModule { }
 
 export const AppParams = Object.freeze({
 
-  // REPORT_PATH:"http://192.0.0.193:8080/RPIS_BIRT/",
-  // BASE_PATH: "http://192.0.0.193:8080/RPIS_API-1.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.193:8080/RPIS_API-1.0/"
-
-
   REPORT_PATH: "http://192.0.0.192:8080/RPIS_BIRT/",
   BASE_PATH: "http://192.0.0.192:8080/RPIS_API-1.0/api/",
   WEB_SOCKET_PATH: "ws://192.0.0.192:8080/RPIS_API-1.0/"
 
-  // REPORT_PATH:"http://192.0.0.186:8080/RPIS_BIRT/",
-  // BASE_PATH: "http://192.0.0.186:8080/RPIS_API-1.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.186:8080/RPIS_API-1.0/",
-
-
-  // BASE_PATH: "http://192.0.0.187:8080/RPIS_API-1.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.187:8080/RPIS_API-1.0/",
-
-  // BASE_PATH: "http://192.0.0.177:8080/RFGTS_API-6.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.177:8080/RFGTS_API-6.0/",
-
-  // BASE_PATH: "http://192.0.0.178:8080/RFGTS_API-6.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.178:8080/RFGTS_API-6.0/",
-
-  // BASE_PATH: "http://192.0.0.188:8080/RFGTS_API-6.0/api/",
-  // WEB_SOCKET_PATH: "ws://192.0.0.188:8080/RFGTS_API-6.0/",
-  // BASE_PATH: "http://" + (window.location.href).split("/")[2] + "/RFGTS_API-6.0/api/",
-  // WEB_SOCKET_PATH: "ws://" + (window.location.href).split("/")[2] + "/RFGTS_API-6.0/",
-
-  // REPORT_PATH:"http://" + (window.location.href).split("/")[2] + "/RPIS_BIRT/",
-  // BASE_PATH: "http://" + (window.location.href).split("/")[2] + "/RPIS_API-1.0/api/",
-  // WEB_SOCKET_PATH: "ws://" + (window.location.href).split("/")[2] + "/RPIS_API-1.0/",
 });
 
