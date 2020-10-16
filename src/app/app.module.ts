@@ -69,6 +69,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomReportComponent } from './custom-report/custom-report.component';
 import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
+import { LottieAnimationViewModule } from 'ng-lottie';
+// import { LottieModule } from 'ngx-lottie';
+// import player from 'lottie-web';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -97,6 +100,7 @@ const cubejsOptions = {
 
 
 @NgModule({
+  
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -120,6 +124,8 @@ const cubejsOptions = {
     DistanceMaintenanceComponent
   ],
   imports: [
+   
+    LottieAnimationViewModule.forRoot(),
     BrowserModule,
     ClarityModule,
     BrowserAnimationsModule,
@@ -154,6 +160,7 @@ const cubejsOptions = {
 })
 
 // , { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }
+
 export class AppModule { }
 
 export const AppParams = Object.freeze({
