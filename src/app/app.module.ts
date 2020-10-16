@@ -68,6 +68,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomReportComponent } from './custom-report/custom-report.component';
+import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -115,7 +116,8 @@ const cubejsOptions = {
     DashboardComponent,
     OperationalDashboardComponent,
     StrategicDashboardComponent,
-    CustomReportComponent
+    CustomReportComponent,
+    DistanceMaintenanceComponent
   ],
   imports: [
     BrowserModule,

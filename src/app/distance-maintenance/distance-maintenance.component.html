@@ -1,0 +1,34 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
+<div class="page-title">Distance Maintenance</div>
+<hr>
+<button class="btn btn-primary" (click)="openBranchModel(1,null)">Add new Distance</button>
+<p-growl></p-growl>
+<div class="limit-height">
+    <clr-datagrid>
+        <clr-dg-column [clrDgField]="'branchId'">From</clr-dg-column>
+        <clr-dg-column [clrDgField]="'branchName'">To</clr-dg-column>
+        <clr-dg-column [clrDgField]="'branchAddress'">Distance</clr-dg-column>
+        <clr-dg-column>Edit</clr-dg-column>
+        <clr-dg-column>Delete</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let branch of branchList">
+            <clr-dg-cell>{{branch.branchCode}}</clr-dg-cell>
+            <clr-dg-cell>{{branch.branchName}}</clr-dg-cell>
+            <clr-dg-cell>{{branch.branchAddress}}</clr-dg-cell>
+            <clr-dg-cell>
+                <button (click)="openBranchModel(2,branch)" class="btn btn-sm">Edit</button>
+            </clr-dg-cell>
+            <clr-dg-cell>
+                <button (click)="removeBranchConfirmation(branch)"
+                    class="btn btn-warning-outline btn-sm">Delete</button>
+            </clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Branches
+            <clr-dg-pagination #pagination [clrDgPageSize]="10">
+            </clr-dg-pagination>
+        </clr-dg-footer>
+    </clr-datagrid>
+</div>

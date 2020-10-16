@@ -6,6 +6,7 @@ import { OperationalDashboardComponent } from './operational-dashboard/operation
 import { StrategicDashboardComponent } from './strategic-dashboard/strategic-dashboard.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomReportComponent } from './custom-report/custom-report.component';
+import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
 
 const routes: Routes = [];
 const appRoutes: Routes = [
@@ -33,6 +34,11 @@ const appRoutes: Routes = [
     {
         path: 'branch-maintenance',
         component: BranchMaintenanceComponent
+    },
+
+    {
+        path: 'distance-maintenance',
+        component: DistanceMaintenanceComponent
     },
 
     {
