@@ -38,12 +38,10 @@
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
               "node_modules/primeicons/primeicons.css"
-              
             ],
             "scripts": [
               "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
               "node_modules/@clr/icons/clr-icons.min.js"
-
             ]
           },
           "configurations": {
@@ -118,7 +116,6 @@
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
               "node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
               "node_modules/primeicons/primeicons.css"
-
             ],
             "scripts": [
               "node_modules/@webcomponents/custom-elements/custom-elements.min.js",
@@ -154,5 +151,8 @@
       }
     }
   },
-  "defaultProject": "webapp"
+  "defaultProject": "webapp",
+  "cli": {
+    "analytics": "21e56eb3-c794-4ac9-8626-efaacdc8f7a0"
+  }
 }
