@@ -12,8 +12,7 @@ import { UtilService } from './services/util.service';
 export class AppComponent {
   menuAllow: boolean;
   title = 'app';
-
-validateUserMenu
+  
   constructor(public router: Router, public util : UtilService) {
 
     console.log("im rootttt>>>>>");

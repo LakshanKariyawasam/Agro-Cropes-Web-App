@@ -19,18 +19,10 @@ import { LoginComponent } from './login/login.component';
 import { UtilService } from './services/util.service';
 import { MdecodeService } from './services/mdecode.service';
 import { GrowlService } from './services/growl-service.service';
-// import { BusinessStructureComponent } from './business-structure/business-structure.component';
 import { TreeModule } from 'angular-tree-component';
 import { PickListModule } from 'primeng/picklist';
-// import { ReaderMaintenanceComponent } from './reader-maintenance/reader-maintenance.component';
-// import { AntennaMaintenanceComponent } from './antenna-maintenance/antenna-maintenance.component'
-// import { StrategicDashboardService } from './services/strategic-dashboard.service';
 
-
-import { UserMaintenanceComponent } from './user-maintenance/user-maintenance.component';
-// import { MismatchUpdateComponent } from './mismatch-update/mismatch-update.component';
-
-// import { CustomReportComponent } from './custom-report/custom-report.component';
+import { BranchMaintenanceComponent } from './branch-maintenance/branch-maintenance.component';
 
 import { FilterPipe } from './pipes/batch-pipe';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
@@ -75,7 +67,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { OrderAcceptComponent } from './order-accept/order-accept.component';
+import { CustomReportComponent } from './custom-report/custom-report.component';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -112,7 +104,7 @@ const cubejsOptions = {
     // BusinessStructureComponent,
     // ReaderMaintenanceComponent,
     // AntennaMaintenanceComponent,
-    UserMaintenanceComponent,
+    BranchMaintenanceComponent,
     // CustomReportComponent,
     FilterPipe,
     // MismatchUpdateComponent,
@@ -123,7 +115,7 @@ const cubejsOptions = {
     DashboardComponent,
     OperationalDashboardComponent,
     StrategicDashboardComponent,
-    OrderAcceptComponent
+    CustomReportComponent
   ],
   imports: [
     BrowserModule,
@@ -165,8 +157,6 @@ export class AppModule { }
 export const AppParams = Object.freeze({
 
   REPORT_PATH: "http://192.0.0.192:8080/RPIS_BIRT/",
-  BASE_PATH: "http://192.0.0.192:8080/RPIS_API-1.0/api/",
-  WEB_SOCKET_PATH: "ws://192.0.0.192:8080/RPIS_API-1.0/"
-
+  BASE_PATH: "http://220.247.201.177:8080/ShortestPath-1.0/service/",
 });
 

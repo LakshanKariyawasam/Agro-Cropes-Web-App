@@ -38,6 +38,7 @@
     "firebase": "^7.18.0",
     "font-awesome": "^4.7.0",
     "highcharts": "^7.2.0",
+    "idb": "^5.0.7",
     "moment": "^2.24.0",
     "ng2-charts": "^2.3.0",
     "ngx-font-awesome": "^1.0.0",

@@ -50,7 +50,6 @@ export class StrategicDashboardComponent implements OnInit {
     // this.getMismatchArray;
     this.getPhysicalInsGRN('2019-08-09','2019-12-09');
     this.getPhysicalIns('2019-08-09','2019-12-09');
-    this.getStockQty();
     // this.getLastStockVerification();
     this.physicalIssues(this.issueDateFrom, this.issueDateTo);
     this.getIssueGRNIns();
@@ -1184,58 +1183,6 @@ export class StrategicDashboardComponent implements OnInit {
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-  getLastStockVerification() {
-
-    let me = this;
-    me.ws = new WebSocket(AppParams.WEB_SOCKET_PATH + "getLastStockVerification");
-    me.ws.onopen = function (event) {
-
-    }
-
-    me.ws.onmessage = function (event) {
-
-      let mapJson = me.util.getJsonObj(event.data)
-
-      if (mapJson['responseCode'] == 1) {
-        let data = mapJson['responseData'];
-
-        data.forEach(element => {
-          me.StockVerification = element;
-
-        });
-      }
-    }
-
-    return me.ws;
-  }
-
-
-  getStockQty() {
-
-    let me = this;
-    me.ws = new WebSocket(AppParams.WEB_SOCKET_PATH + "getStockDetails");
-    me.ws.onopen = function (event) {
-
-    }
-
-    me.ws.onmessage = function (event) {
-
-      let mapJson = me.util.getJsonObj(event.data)
-
-      if (mapJson['responseCode'] == 1) {
-        let data = mapJson['responseData'];
-
-        data.forEach(element => {
-          me.newStockData = element;
-          console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", this.newStockData);
-
-        });
-      }
-    }
-
-    return me.ws;
-  }
 
   closeIssueModal() {
     this.IssueModal = false;

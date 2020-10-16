@@ -1,22 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Branch } from '../models/Branch';
+import { BranchService } from '../services/branch.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [AuthService]
+  providers: [AuthService, BranchService]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authservice: AuthService) { }
+  constructor(private router: Router, private authservice: AuthService, public branchService: BranchService) { }
 
   email = "";
   password: "";
   message = '';
 
   public loadingMask: boolean;
+  public branchList: Branch[] = new Array<Branch>();
+
+  private _dataChange: Subject<Branch> = new Subject<Branch>();
+  private _dbPromise;
 
   errorMsg = ''; //validation error handle
 
@@ -31,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.loadingMask = true;
       this.authservice.loginWithEmail(this.email, this.password)
         .then(() => {
-          this.loadingMask = false;
+          this.getAllBranch();
           this.router.navigate(['/operational-dashboard'])
         }).catch(_error => {
           this.loadingMask = false;
@@ -61,6 +68,18 @@ export class LoginComponent implements OnInit {
   clearErrorMessage() {
     this.errorMsg = '';
     this.error = { name: '', message: '' };
+  }
+
+  getAllBranch() {
+    this.loadingMask = true;
+    this.branchService.getAllBranch().subscribe(res => {
+      console.log("Branch res  ", res)
+      this.branchList = res.data;
+      localStorage.setItem('branchList', JSON.stringify(this.branchList));
+      this.loadingMask = false;
+    }, error => {
+      this.loadingMask = false;
+    });
   }
 
 }

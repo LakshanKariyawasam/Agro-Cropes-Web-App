@@ -1,0 +1,134 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
+<div class="page-title">Branch Maintenance</div>
+<hr>
+<button class="btn btn-primary" (click)="openBranchModel(1,null)">Add new Branch</button>
+<p-growl></p-growl>
+<div class="limit-height">
+  <clr-datagrid>
+    <clr-dg-column [clrDgField]="'branchId'">Branch Code</clr-dg-column>
+    <clr-dg-column [clrDgField]="'branchName'">Branch Name</clr-dg-column>
+    <clr-dg-column [clrDgField]="'branchAddress'">Branch Address</clr-dg-column>
+    <clr-dg-column [clrDgField]="'branchTel'">Branch Tel</clr-dg-column>
+    <clr-dg-column [clrDgField]="'branchEmail'">Branch Email</clr-dg-column>
+    <clr-dg-column>Status</clr-dg-column>
+    <clr-dg-column>Edit</clr-dg-column>
+    <clr-dg-column>Delete</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let branch of branchList">
+      <clr-dg-cell>{{branch.branchCode}}</clr-dg-cell>
+      <clr-dg-cell>{{branch.branchName}}</clr-dg-cell>
+      <clr-dg-cell>{{branch.branchAddress}}</clr-dg-cell>
+      <clr-dg-cell>{{branch.branchTel}}</clr-dg-cell>
+      <clr-dg-cell>{{branch.branchEmail}}</clr-dg-cell>
+      <clr-dg-cell>{{(branch.activeStatus==1)? 'Active' : 'Inactive' }}</clr-dg-cell>
+      <clr-dg-cell>
+        <button (click)="openBranchModel(2,branch)" class="btn btn-sm">Edit</button>
+      </clr-dg-cell>
+      <clr-dg-cell>
+        <button (click)="removeBranchConfirmation(branch)" class="btn btn-warning-outline btn-sm">Delete</button>
+      </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Branches
+      <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+</div>
+
+
+<!-- ####################### branch model ######################## -->
+<clr-modal [(clrModalOpen)]="branchModel" [clrModalSize]="'md'" [clrModalClosable]="false">
+  <h3 class="modal-title" *ngIf="editMode == false">Add New Branch</h3>
+  <h3 class="modal-title" *ngIf="editMode == true">Edit Branch</h3>
+  <div class="modal-body">
+
+
+    <div class="alert alert-danger" *ngIf="branchValidationArray.length>0">
+      <div class="alert-items">
+        <div class="alert-item static">
+          <div class="alert-icon-wrapper">
+            <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+          </div>
+          <span class="alert-text">
+            <ul>
+              <li *ngFor="let a of branchValidationArray">{{a}}</li>
+
+            </ul>
+
+          </span>
+        </div>
+      </div>
+    </div>
+
+
+    <form class="clr-form clr-form-horizontal">
+      <section class="form-block">
+
+
+        <clr-input-container>
+          <label for="unit">Branch ID</label>
+          <input clrInput [(ngModel)]="branch.branchId" name="branch.branchId" type="text" id="itemDesc"
+            placeholder="Enter branch id here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">Branch Name</label>
+          <input clrInput [(ngModel)]="branch.branchName" name="branch.branchName" type="text" id="itemDesc"
+            placeholder="Enter branch name here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">Branch Address</label>
+          <input clrInput [(ngModel)]="branch.branchAddress" name="branch.branchAddress" type="text" id="itemDesc"
+            placeholder="Enter branch address here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">Branch Tel</label>
+          <input clrInput [(ngModel)]="branch.branchTel" name="branch.branchTel" type="text" id="itemDesc"
+            placeholder="Enter branch tel here">
+        </clr-input-container>
+
+        <clr-input-container>
+          <label for="unit">Branch Email</label>
+          <input clrInput [(ngModel)]="branch.branchEmail" name="branch.branchEmail" type="text" id="itemDesc"
+            placeholder="Enter branch email here">
+        </clr-input-container>
+
+        <clr-select-container>
+          <label for="aForm_4">Status</label>
+
+          <select clrSelect [(ngModel)]="branch.activeStatus" name="branch.activeStatus" id="aForm_4">
+            <option [value]="0" selected>Select status here</option>
+            <option [value]="1">ACTIVE</option>
+            <option [value]="2">INACTIVE</option>
+          </select>
+
+        </clr-select-container>
+
+      </section>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="branchModel = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="addBranch()" *ngIf="editMode == false">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="editBranch()" *ngIf="editMode == true">Save</button>
+  </div>
+</clr-modal>
+
+
+<!-- ####################### remove model ######################## -->
+<clr-modal [(clrModalOpen)]="confirmationModel" [clrModalSize]="'sm'" [clrModalClosable]="false">
+  <h3 class="modal-title">Confirmation</h3>
+  <div class="modal-body">
+      <p>Are you sure you want to remove this branch?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="confirmationModel = false">Cancel</button>
+    <button type="button" class="btn btn-warning" (click)="removeBranch()" >Ok</button>
+  </div>
+</clr-modal>
