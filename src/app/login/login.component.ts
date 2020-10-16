@@ -13,7 +13,9 @@ import { Subject } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authservice: AuthService, public branchService: BranchService) { }
+  public lottieConfig: Object;
+
+  private anim: any;
 
   email = "";
   password: "";
@@ -22,14 +24,22 @@ export class LoginComponent implements OnInit {
   public loadingMask: boolean;
   public branchList: Branch[] = new Array<Branch>();
 
-  private _dataChange: Subject<Branch> = new Subject<Branch>();
-  private _dbPromise;
-
   errorMsg = ''; //validation error handle
 
   error: { name: string, message: string } = { name: '', message: '' }; //firebase error handle
 
+
+  constructor(private router: Router, private authservice: AuthService, public branchService: BranchService) {
+    this.lottieConfig = {
+      path: '/assets/images/business.json',
+      renderer: 'canvas',
+      autoplay: true,
+      loop: true
+    };
+  }
+
   ngOnInit(): void {
+
   }
 
   login() {
@@ -80,6 +90,10 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.loadingMask = false;
     });
+  }
+
+  handleAnimation(anim: any) {
+    this.anim = anim;
   }
 
 }

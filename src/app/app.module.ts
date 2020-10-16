@@ -70,8 +70,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomReportComponent } from './custom-report/custom-report.component';
 import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
 import { LottieAnimationViewModule } from 'ng-lottie';
-// import { LottieModule } from 'ngx-lottie';
-// import player from 'lottie-web';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -97,7 +95,6 @@ const cubejsOptions = {
     apiUrl: "http://localhost:4000/cubejs-api/v1"
   }
 };
-
 
 @NgModule({
   
