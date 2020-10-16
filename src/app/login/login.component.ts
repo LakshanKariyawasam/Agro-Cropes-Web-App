@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private authservice: AuthService, public branchService: BranchService) {
     this.lottieConfig = {
-      path: '/assets/images/business.json',
+      path: '/assets/lottie/business.json',
       renderer: 'canvas',
       autoplay: true,
       loop: true
@@ -43,22 +43,26 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.clearErrorMessage();
-    if (this.validateForm(this.email, this.password)) {
-      this.loadingMask = true;
-      this.authservice.loginWithEmail(this.email, this.password)
-        .then(() => {
-          this.getAllBranch();
-          this.router.navigate(['/operational-dashboard'])
-        }).catch(_error => {
-          this.loadingMask = false;
-          this.error = _error
-          this.errorMsg = "Cannot connect to server: ", this.error;
-          this.router.navigate(['/login'])
-        })
-    }
-    // this.router.navigate(['/dashboard']);
+    this.getAllBranch();
+    this.router.navigate(['/operational-dashboard'])
   }
+
+  // login() {
+  //   this.clearErrorMessage();
+  //   if (this.validateForm(this.email, this.password)) {
+  //     this.loadingMask = true;
+  //     this.authservice.loginWithEmail(this.email, this.password)
+  //       .then(() => {
+  //         this.getAllBranch();
+  //         this.router.navigate(['/operational-dashboard'])
+  //       }).catch(_error => {
+  //         this.loadingMask = false;
+  //         this.error = _error
+  //         this.errorMsg = "Cannot connect to server: ", this.error;
+  //         this.router.navigate(['/login'])
+  //       })
+  //   }
+  // }
 
   validateForm(email, password) {
 
