@@ -28,12 +28,8 @@ export class HeaderComponent implements OnInit {
       this.name = userObj[0].userId;
       this.show = true;
       console.log("firstName: ", this.username);
-      localStorage.setItem("user",userObj[0].userId);
-     
-   }
-    
-    
-   
+      localStorage.setItem("user",userObj[0].userId); 
+   }   
   }
 
   reloadPage() { // click handler or similar
