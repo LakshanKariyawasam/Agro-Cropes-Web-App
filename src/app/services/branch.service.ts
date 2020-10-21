@@ -12,4 +12,16 @@ export class BranchService {
         return this.http.get<Res>(AppParams.BASE_PATH + "BranchService/getBranchDetails");
     }
 
+    public addBranch(payload) {
+        return this.http.post(AppParams.BASE_PATH + "BranchService/addBranch", payload);
+    }
+
+    public editBranch(payload) {
+        return this.http.post(AppParams.BASE_PATH + "BranchService/editBranch", payload);
+    }
+
+    public deleteBranch(payload) {
+        return this.http.delete(AppParams.BASE_PATH + "BranchService/deleteBranch", payload);
+    }
+
 }

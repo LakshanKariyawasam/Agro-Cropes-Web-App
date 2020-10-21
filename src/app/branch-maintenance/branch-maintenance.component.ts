@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Branch } from '../models/Branch';
-import { GroupModel } from '../models/GroupModel';
 import { BranchService } from '../services/branch.service';
-import { GrowlService } from '../services/growl-service.service';
 
 
 @Component({
@@ -20,14 +18,13 @@ export class BranchMaintenanceComponent implements OnInit {
   public branch = new Branch();
   public branchValidationArray = [];
   public branchList: Branch[] = new Array<Branch>();
-  public selectedBranchGroups: GroupModel[] = [];
   public editMode: boolean;
   branchGroupsForBranch: any;
   loadingMask: boolean;
   innerHeight: any;
 
   constructor(public branchService: BranchService,
-    public toastr: ToastrService, public growl: GrowlService) {
+    public toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -57,50 +54,88 @@ export class BranchMaintenanceComponent implements OnInit {
     this.validateBranchForm();
     console.log("loading mask: ", this.branchValidationArray.length);
     if (this.branchValidationArray.length == 0) {
-      this.branchList.forEach((branch: Branch, index: number) => {
-        if (branch.branchCode === this.branch.branchCode) {
-          this.branchList[index] = this.branch;
-        }
-      });
 
-      console.log("branchList :::: ", this.branchList);
-      this.branchModel = false;
-      this.loadingMask = false;
+      this.branchService.editBranch(this.branch).subscribe(res => {
+        console.log("resss ", res)
+
+        if (res['flag'] == 1) {
+          this.showSuccess("Branch edit successfully")
+          this.branchList.forEach((branch: Branch, index: number) => {
+            if (branch.id === this.branch.id) {
+              this.branchList[index] = this.branch;
+            }
+          });
+
+          console.log("branchList :::: ", this.branchList);
+          this.branchModel = false;
+          this.loadingMask = false;
+        } else {
+          this.showError(res['errorMessage'])
+        }
+        this.loadingMask = false;
+      }, error => {
+        this.loadingMask = false;
+        this.showError(error)
+      });
     } else {
       this.loadingMask = false;
     }
   }
 
   addBranch() {
-    console.log("loading mask: ", this.loadingMask)
     this.loadingMask = true;
-
     this.validateBranchForm();
-    console.log("loading mask: ", this.branchValidationArray.length);
     if (this.branchValidationArray.length == 0) {
-      this.branchList.push(this.branch);
 
-      console.log("branchList :::: ", this.branchList);
-      this.branchModel = false;
-      this.loadingMask = false;
+      this.branchService.addBranch(this.branch).subscribe(res => {
+        console.log("resss ", res)
+
+        if (res['flag'] == 1) {
+          this.showSuccess("Branch added successfully")
+          this.branchList.push(this.branch);
+          this.branchModel = false;
+        } else {
+          this.showError(res['errorMessage'])
+        }
+        this.loadingMask = false;
+      }, error => {
+        this.loadingMask = false;
+        this.showError(error)
+      });
     } else {
       this.loadingMask = false;
     }
   }
 
-  removeBranchConfirmation(branch) {
+  deleteBranchConfirmation(branch) {
     this.branch = branch;
     this.confirmationModel = true;
   }
 
-  removeBranch() {
-    this.branchList.forEach((branch: Branch, index: number) => {
-      if (branch.branchCode === this.branch.branchCode) {
-        this.branchList.pop();
-      }
-    });
+  deleteBranch() {
+    this.branchService.deleteBranch(this.branch).subscribe(res => {
+      console.log("resss ", res)
 
-    this.confirmationModel = false;
+      if (res['flag'] == 1) {
+        this.showSuccess("Branch delete successfully")
+
+        console.log("resss ", res)
+        this.branchList.forEach((branch: Branch, index: number) => {
+          if (branch.id === this.branch.id) {
+            this.branchList.splice(index, 1);
+          }
+        });
+
+        this.confirmationModel = false;
+
+      } else {
+        this.showError(res['errorMessage'])
+      }
+      this.loadingMask = false;
+    }, error => {
+      this.loadingMask = false;
+      this.showError(error)
+    });
   }
 
   showSuccess(message) {
@@ -127,9 +162,6 @@ export class BranchMaintenanceComponent implements OnInit {
     }
     if (this.validateBranchEmail() != "") {
       this.branchValidationArray.push(this.validateBranchEmail());
-    }
-    if (this.validateBranchStatus() != "") {
-      this.branchValidationArray.push(this.validateBranchStatus());
     }
   }
 
@@ -176,15 +208,6 @@ export class BranchMaintenanceComponent implements OnInit {
     let str = "";
     if (status == false) {
       str += " The email address is badly formatted.";
-    }
-    return str;
-  }
-
-  validateBranchStatus(): string {
-    let status = (this.branch.activeStatus == 0) ? false : true;
-    let str = "";
-    if (status == false) {
-      str += " Please select branch status"
     }
     return str;
   }

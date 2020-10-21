@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppParams } from '../app.module';
 import { DashboardService } from '../services/dashboard.service';
-import { StockQty } from '../models/stockQty';
-import { UtilService } from '../services/util.service';
+import { Branch } from '../models/Branch';
 
 @Component({
   selector: 'app-operational-dashboard',
@@ -12,15 +10,37 @@ import { UtilService } from '../services/util.service';
 })
 export class OperationalDashboardComponent implements OnInit {
 
-  constructor(public util: UtilService, public dashboardService: DashboardService) { }
 
-  ngOnInit() {
+  public branchList: Branch[] = new Array<Branch>();
+  branchLength: number = 0;
+  loadingMask: boolean;
+
+  from: String = null;
+  to: String = null;
+  lableOne: any;
+  lableTwo: any;
+
+  constructor(public dashboardService: DashboardService) {
+    this.branchList = JSON.parse(localStorage.getItem('branchList'));
+    this.branchLength = this.branchList.length;
+    console.log("shortest branch ", this.branchList)
   }
 
-  public ws: any;
-  public newStockData: StockQty = new StockQty();
-  public stQtyArray = [];
-  public phQtyArray = [];
-  public vaQtyArray = [];
+  ngOnInit() {
+    this.branchList = JSON.parse(localStorage.getItem('branchList'));
+    this.branchLength = this.branchList.length;
+    console.log("shortest branch ", this.branchList)
+  }
 
+  findShortestPath() {
+    this.loadingMask = true;
+    this.dashboardService.getShortestPath(this.from, this.to).subscribe(res => {
+      console.log("shortest path res  ", res)
+      this.lableOne = res.data.lableOne;
+      this.lableTwo = res.data.lableTwo;
+      this.loadingMask = false;
+    }, error => {
+      this.loadingMask = false;
+    });
+  }
 }

@@ -10,8 +10,8 @@
 
           </div>
 
-          <clr-vertical-nav [clrVerticalNavCollapsible]="true" *ngIf="router.url != '/login'"
-               [(clrVerticalNavCollapsed)]="collapsed">
+          <clr-vertical-nav [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="false"
+               *ngIf="router.url != '/login'">
                <a clrVerticalNavLink [routerLink]="['/operational-dashboard']" routerLinkActive="active">
                     <clr-icon clrVerticalNavIcon shape="home"></clr-icon>
                     Operational Dashboard

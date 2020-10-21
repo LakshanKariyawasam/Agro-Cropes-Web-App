@@ -26,7 +26,7 @@
         <button (click)="openBranchModel(2,branch)" class="btn btn-sm">Edit</button>
       </clr-dg-cell>
       <clr-dg-cell>
-        <button (click)="removeBranchConfirmation(branch)" class="btn btn-warning-outline btn-sm">Delete</button>
+        <button (click)="deleteBranchConfirmation(branch)" class="btn btn-warning-outline btn-sm">Delete</button>
       </clr-dg-cell>
     </clr-dg-row>
 
@@ -70,44 +70,33 @@
 
         <clr-input-container>
           <label for="unit">Branch ID</label>
-          <input clrInput [(ngModel)]="branch.branchCode" name="branch.branchCode" type="text" id="itemDesc"
+          <input clrInput [(ngModel)]="branch.branchCode" name="branch.branchCode" type="text" id="branchCode"
             placeholder="Enter branch code here">
         </clr-input-container>
 
         <clr-input-container>
           <label for="unit">Branch Name</label>
-          <input clrInput [(ngModel)]="branch.branchName" name="branch.branchName" type="text" id="itemDesc"
+          <input clrInput [(ngModel)]="branch.branchName" name="branch.branchName" type="text" id="branchName"
             placeholder="Enter branch name here">
         </clr-input-container>
 
         <clr-input-container>
           <label for="unit">Branch Address</label>
-          <input clrInput [(ngModel)]="branch.branchAddress" name="branch.branchAddress" type="text" id="itemDesc"
+          <input clrInput [(ngModel)]="branch.branchAddress" name="branch.branchAddress" type="text" id="branchAddress"
             placeholder="Enter branch address here">
         </clr-input-container>
 
         <clr-input-container>
           <label for="unit">Branch Tel</label>
-          <input clrInput [(ngModel)]="branch.branchTel" name="branch.branchTel" type="text" id="itemDesc"
+          <input clrInput [(ngModel)]="branch.branchTel" name="branch.branchTel" type="text" id="branchTel"
             placeholder="Enter branch tel here">
         </clr-input-container>
 
         <clr-input-container>
           <label for="unit">Branch Email</label>
-          <input clrInput [(ngModel)]="branch.branchEmail" name="branch.branchEmail" type="text" id="itemDesc"
+          <input clrInput [(ngModel)]="branch.branchEmail" name="branch.branchEmail" type="text" id="branchEmail"
             placeholder="Enter branch email here">
         </clr-input-container>
-
-        <clr-select-container>
-          <label for="aForm_4">Status</label>
-
-          <select clrSelect [(ngModel)]="branch.activeStatus" name="branch.activeStatus" id="aForm_4">
-            <option [value]="0" selected>Select status here</option>
-            <option [value]="1">ACTIVE</option>
-            <option [value]="2">INACTIVE</option>
-          </select>
-
-        </clr-select-container>
 
       </section>
     </form>
@@ -121,14 +110,14 @@
 </clr-modal>
 
 
-<!-- ####################### remove model ######################## -->
+<!-- ####################### delete model ######################## -->
 <clr-modal [(clrModalOpen)]="confirmationModel" [clrModalSize]="'sm'" [clrModalClosable]="false">
   <h3 class="modal-title">Confirmation</h3>
   <div class="modal-body">
-      <p>Are you sure you want to remove this branch?</p>
+      <p>Are you sure you want to delete this branch?</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline" (click)="confirmationModel = false">Cancel</button>
-    <button type="button" class="btn btn-warning" (click)="removeBranch()" >Ok</button>
+    <button type="button" class="btn btn-warning" (click)="deleteBranch()" >Ok</button>
   </div>
 </clr-modal>

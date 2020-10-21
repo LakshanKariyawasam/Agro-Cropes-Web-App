@@ -9,7 +9,7 @@
           <div class="clr-col-md-8 text-right">
             <span>No of Branch</span>
             <h2 class="font-bold" style="color: white; ">
-              {{newStockData.stockAmount}}
+              {{branchLength}}
             </h2>
           </div>
         </div>
@@ -68,39 +68,51 @@
 
 
   <div class="clr-row">
-    <div class="clr-col-md-6">
+    <div class="clr-col-md-12">
       <div class="card">
         <div class="card-header">
-          Verifications
-        </div>
-        <div class="card-block">
-
-          <div class="card-text">
-            ...
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="clr-col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Transactions
+          Shortest Path
         </div>
         <div class="card-block">
 
           <div class="card-text">
             <div class="clr-row">
               <div class="clr-col-md-6">
-                <clr-date-container style="width: 7rem; ">
-                  <input type="date" clrDate name="date" [(ngModel)]="date">
-                </clr-date-container>
+                <div class="clr-row">
+                  <div class="form-group">
+                    &nbsp;&nbsp;&nbsp;
+                  </div>
+                  <div class="form-group">
+                    <label for="aForm_3">From</label>
+                    <div class="select">
+                      <select id="aForm_3" [(ngModel)]="from" name="from">
+                        <option [value]="null" selected>Select From</option>
+                        <option [value]="branch.branchName" *ngFor="let branch of branchList">
+                          {{branch.branchName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    &nbsp;&nbsp;&nbsp;
+                  </div>
+                  <div class="form-group">
+                    <label for="aForm_3">To</label>
+                    <div class="select">
+                      <select id="aForm_3" [(ngModel)]="to" name="to">
+                        <option [value]="null" selected>Select To</option>
+                        <option [value]="branch.branchName" *ngFor="let branch of branchList">
+                          {{branch.branchName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="clr-col-md-6">
-                <div class="btn-group btn-sm">
-                  <div class="radio btn">
+                <button class="btn btn-primary" (click)="findShortestPath()">Find</button>
+                <!-- <div class="btn-group btn-sm">
+                  <div class="radio btn" >
                     <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-1">
-                    <label for="btn-demo-radio-1">Accept</label>
+                    <label for="btn-demo-radio-1">Find</label>
                   </div>
                   <div class="radio btn">
                     <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-2">
@@ -110,11 +122,15 @@
                     <input type="radio" name="btn-group-demo-radios" id="btn-demo-radio-3">
                     <label for="btn-demo-radio-3">Out</label>
                   </div>
-                </div>
+                </div> -->
 
               </div>
             </div>
-
+            <div class="clr-row" *ngIf="lableOne">
+              {{lableOne}}
+              <br><br>
+              {{lableTwo}}
+            </div>
           </div>
         </div>
       </div>

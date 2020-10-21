@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ResponseWrapper } from '../models/response-wrapper';
 import { AppParams } from '../app.module';
-import { AddNewReport } from '../models/add-new-report';
 
 @Injectable()
 export class CustomReportService {
@@ -22,9 +20,9 @@ export class CustomReportService {
         return this.http.post(AppParams.BASE_PATH + "reportService/createReport", payload);
     }
 
-    public getAllReport() {
-        return this.http.get<ResponseWrapper<AddNewReport>>(AppParams.BASE_PATH + "reportService/getReportList");
-    }
+    // public getAllReport() {
+    //     return this.http.get<ResponseWrapper<AddNewReport>>(AppParams.BASE_PATH + "reportService/getReportList");
+    // }
 
     public editReport(payload) {
         return this.http.post(AppParams.BASE_PATH + "reportService/updateReport", payload);

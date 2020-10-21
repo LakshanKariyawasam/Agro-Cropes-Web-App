@@ -6,7 +6,5 @@ export class Branch {
     public branchAddress: string = null;
     public branchTel: string = null;
     public branchEmail: string = null;
-    public activeStatus: number = 0;
-    public dateInserted: string = null;
 
 }

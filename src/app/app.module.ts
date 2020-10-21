@@ -16,72 +16,36 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 
-import { UtilService } from './services/util.service';
-import { MdecodeService } from './services/mdecode.service';
-import { GrowlService } from './services/growl-service.service';
 import { TreeModule } from 'angular-tree-component';
 import { PickListModule } from 'primeng/picklist';
 
 import { BranchMaintenanceComponent } from './branch-maintenance/branch-maintenance.component';
 
-import { FilterPipe } from './pipes/batch-pipe';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
-import { LoggedInUserModel } from './models/LoggedInUserModel';
-import { GroupModel } from './models/GroupModel';
-import { FunctionModel } from './models/FunctionModel';
 import { GrowlModule } from 'primeng/growl';
 import { MessageService } from 'primeng/components/common/messageservice';
 
 import { LoadingMaskComponent } from './loading-mask/loading-mask.component';
-// import { VerificationComponent } from './verification/verification.component';
-// import { StockDetailsComponent } from './stock-details/stock-details.component';
-// import { GrnAcceptComponent } from './grn-accept/grn-accept.component';
 import { OperationalDashboardComponent } from './operational-dashboard/operational-dashboard.component';
-import { StrategicDashboardComponent } from './strategic-dashboard/strategic-dashboard.component';
 
-// import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgxFontAwesomeModule } from 'ngx-font-awesome';
-
-import { CubejsClientModule } from '@cubejs-client/ngx';
-import { environment } from '../environments/environment';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-// import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-// import { NgZorroAntdModule, NZ_ICONS } from 'ng-zorro-antd';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { ReactiveFormsModule } from '@angular/forms';
 
-// import { NZ_I18N, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 registerLocaleData(en);
 import { CalendarModule } from 'primeng/components/calendar/calendar';
 
-// 1. Import the libs you need
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CustomReportComponent } from './custom-report/custom-report.component';
 import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
 import { LottieAnimationViewModule } from 'ng-lottie';
 
-// 2. Add your credentials from step 1
-const config = {
-  apiKey: "AIzaSyCS38nvGqWX3XSZQSkkCMPgEu6jwDCuvNs",
-  authDomain: "agrocropes-c9415.firebaseapp.com",
-  databaseURL: "https://agrocropes-c9415.firebaseio.com",
-  projectId: "agrocropes-c9415",
-  storageBucket: "agrocropes-c9415.appspot.com",
-  messagingSenderId: "309560786035",
-  appId: "1:309560786035:web:b8038ddd5e947117f03e06",
-  measurementId: "G-QC2JM0BXN8"
-};
 
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
@@ -97,31 +61,20 @@ const cubejsOptions = {
 };
 
 @NgModule({
-  
+
   declarations: [
     AppComponent,
     HeaderComponent,
     SideNavComponent,
     LoginComponent,
-    // BusinessStructureComponent,
-    // ReaderMaintenanceComponent,
-    // AntennaMaintenanceComponent,
     BranchMaintenanceComponent,
-    // CustomReportComponent,
-    FilterPipe,
-    // MismatchUpdateComponent,
     LoadingMaskComponent,
-    // VerificationComponent,
-    // StockDetailsComponent,
-    // GrnAcceptComponent,
-    DashboardComponent,
     OperationalDashboardComponent,
-    StrategicDashboardComponent,
     CustomReportComponent,
     DistanceMaintenanceComponent
   ],
   imports: [
-   
+
     LottieAnimationViewModule.forRoot(),
     BrowserModule,
     ClarityModule,
@@ -137,23 +90,14 @@ const cubejsOptions = {
     HttpClientModule,
     GrowlModule,
     NgxFontAwesomeModule,
-    CubejsClientModule.forRoot(cubejsOptions),
     CalendarModule,
-    // NzDatePickerModule,
-    // NgZorroAntdModule,
     ReactiveFormsModule,
     ScrollingModule,
     DragDropModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(config),
-    AngularFirestoreModule, // firestore
-    AngularFireAuthModule, // auth
-    AngularFireStorageModule, // storage
-    AngularFireDatabaseModule
+    ReactiveFormsModule
   ],
-  providers: [UtilService, MdecodeService,
-    LoggedInUserModel, GroupModel, FunctionModel, MessageService, GrowlService],
-  bootstrap: [AppComponent, StrategicDashboardComponent]
+  providers: [MessageService],
+  bootstrap: [AppComponent]
 })
 
 // , { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }
@@ -161,7 +105,6 @@ const cubejsOptions = {
 export class AppModule { }
 
 export const AppParams = Object.freeze({
-
   REPORT_PATH: "http://192.0.0.192:8080/RPIS_BIRT/",
   BASE_PATH: "http://220.247.201.177:8080/ShortestPath-1.0/service/",
 });

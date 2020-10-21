@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewContainerRef, NgZone } from '@angular/core';
-import { UtilService } from '../services/util.service';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -13,36 +12,20 @@ export class HeaderComponent implements OnInit {
   public username: string = "";
   public name: string = "";
 
-  public show :boolean = false;
-  constructor(public util: UtilService, public router: Router, private zone: NgZone) {
+  public show: boolean = false;
+  constructor(public router: Router, private zone: NgZone) {
 
   }
 
 
   ngOnInit() {
-    let userObj = this.util.getLoggedInData();
-    console.log("userObj: ", userObj);
-    
-    if(userObj[0] != undefined){
-      this.username = userObj[0].firstName;
-      this.name = userObj[0].userId;
-      this.show = true;
-      console.log("firstName: ", this.username);
-      localStorage.setItem("user",userObj[0].userId); 
-   }   
+
   }
-
-  reloadPage() { // click handler or similar
-    this.zone.runOutsideAngular(() => {
-        location.reload();
-    });
-} 
-
 
   logout() {
     console.log("logging out");
-    let userObj = this.util.setLoggedInData(null);
     sessionStorage.clear();
+    localStorage.clear();
     let me = this;
     this.username;
     this.show = false;

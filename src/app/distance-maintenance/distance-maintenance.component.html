@@ -2,33 +2,128 @@
 
 <div class="page-title">Distance Maintenance</div>
 <hr>
-<button class="btn btn-primary" (click)="openBranchModel(1,null)">Add new Distance</button>
+<button class="btn btn-primary" (click)="openDistanceModel(1,null)">Add new Distance</button>
 <p-growl></p-growl>
 <div class="limit-height">
     <clr-datagrid>
-        <clr-dg-column [clrDgField]="'branchId'">From</clr-dg-column>
-        <clr-dg-column [clrDgField]="'branchName'">To</clr-dg-column>
-        <clr-dg-column [clrDgField]="'branchAddress'">Distance</clr-dg-column>
+        <clr-dg-column [clrDgField]="'from'">From</clr-dg-column>
+        <clr-dg-column [clrDgField]="'to'">To</clr-dg-column>
+        <clr-dg-column [clrDgField]="'distance'">Distance</clr-dg-column>
         <clr-dg-column>Edit</clr-dg-column>
         <clr-dg-column>Delete</clr-dg-column>
 
-        <clr-dg-row *clrDgItems="let branch of branchList">
-            <clr-dg-cell>{{branch.branchCode}}</clr-dg-cell>
-            <clr-dg-cell>{{branch.branchName}}</clr-dg-cell>
-            <clr-dg-cell>{{branch.branchAddress}}</clr-dg-cell>
+        <clr-dg-row *clrDgItems="let distance of distanceList">
+            <clr-dg-cell>{{distance.fromDesc}}</clr-dg-cell>
+            <clr-dg-cell>{{distance.toDesc}}</clr-dg-cell>
+            <clr-dg-cell>{{distance.distance}}</clr-dg-cell>
             <clr-dg-cell>
-                <button (click)="openBranchModel(2,branch)" class="btn btn-sm">Edit</button>
+                <button (click)="openDistanceModel(2,distance)" class="btn btn-sm">Edit</button>
             </clr-dg-cell>
             <clr-dg-cell>
-                <button (click)="removeBranchConfirmation(branch)"
+                <button (click)="deleteDistanceConfirmation(distance)"
                     class="btn btn-warning-outline btn-sm">Delete</button>
             </clr-dg-cell>
         </clr-dg-row>
 
         <clr-dg-footer>
-            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Branches
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Distancees
             <clr-dg-pagination #pagination [clrDgPageSize]="10">
             </clr-dg-pagination>
         </clr-dg-footer>
     </clr-datagrid>
 </div>
+
+
+
+<!-- ####################### distance model ######################## -->
+<clr-modal [(clrModalOpen)]="distanceModel" [clrModalSize]="'md'" [clrModalClosable]="false">
+    <h3 class="modal-title" *ngIf="editMode == false">Add New Distance</h3>
+    <h3 class="modal-title" *ngIf="editMode == true">Edit Distance</h3>
+    <div class="modal-body">
+
+
+        <div class="alert alert-danger" *ngIf="distanceValidationArray.length>0">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        <ul>
+                            <li *ngFor="let a of distanceValidationArray">{{a}}</li>
+
+                        </ul>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <form class="clr-form clr-form-horizontal">
+            <section class="form-block">
+
+                <!-- <clr-input-container>
+                    <label for="unit">From</label>
+                    <input clrInput [(ngModel)]="distance.from" name="distance.from" type="text" id="itemDesc"
+                        placeholder="Enter distance name here">
+                </clr-input-container> -->
+
+
+                <div class="form-group">
+                    <label for="aForm_3">From</label>
+                    <div class="select">
+                        <select id="aForm_3" [(ngModel)]="distance.from" name="distance.from" (change)="from()">
+                            <option [value]= 0 selected>Select From</option>
+                            <option [value]="branch.id" *ngFor="let branch of branchList">
+                                {{branch.branchName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="aForm_3">To</label>
+                    <div class="select">
+                        <select id="aForm_3" [(ngModel)]="distance.to" name="distance.to" (change)="to()">
+                            <option [value]= 0 selected>Select To</option>
+                            <option [value]="branch.id" *ngFor="let branch of branchList">
+                                {{branch.branchName}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- <clr-input-container>
+                    <label for="unit">To</label>
+                    <input clrInput [(ngModel)]="distance.to" name="distance.to" type="text" id="itemDesc"
+                        placeholder="Enter distance address here">
+                </clr-input-container> -->
+
+                <clr-input-container>
+                    <label for="unit">Ditance</label>
+                    <input clrInput [(ngModel)]="distance.distance" name="distance.distance" type="number" id="distance"
+                        placeholder="Enter distance tel here">
+                </clr-input-container>
+
+            </section>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="distanceModel = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="addDistance()" *ngIf="editMode == false">Ok</button>
+        <button type="button" class="btn btn-primary" (click)="editDistance()" *ngIf="editMode == true">Save</button>
+    </div>
+</clr-modal>
+
+
+<!-- ####################### delete model ######################## -->
+<clr-modal [(clrModalOpen)]="confirmationModel" [clrModalSize]="'sm'" [clrModalClosable]="false">
+    <h3 class="modal-title">Confirmation</h3>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this distance?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="confirmationModel = false">Cancel</button>
+        <button type="button" class="btn btn-warning" (click)="deleteDistance()">Ok</button>
+    </div>
+</clr-modal>

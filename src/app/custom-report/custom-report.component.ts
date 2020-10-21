@@ -7,9 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomReportComponent implements OnInit {
 
+    report1type: number = 0;
+  report2type: number = 0;
+  itemNo: number = 0;
+  itemID: string = null;
+  public user: string = "";
+
+  public itemIDList: string[] = new Array<string>();
+  date: string;
+  innerHeight: string;
+  loadingMask: boolean;
+  
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getReport1() {
+
+  }
+
+  getReport2() {
+    
   }
 
 }
