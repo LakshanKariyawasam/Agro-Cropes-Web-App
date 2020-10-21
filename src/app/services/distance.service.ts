@@ -17,7 +17,7 @@ export class DistanceService {
     }
 
     public editDistance(payload) {
-        return this.http.post(AppParams.BASE_PATH + "DistanceService/editDistance", payload);
+        return this.http.put(AppParams.BASE_PATH + "DistanceService/editDistance", payload);
     }
 
     public deleteDistance(payload) {

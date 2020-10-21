@@ -22,6 +22,7 @@ export class BranchMaintenanceComponent implements OnInit {
   branchGroupsForBranch: any;
   loadingMask: boolean;
   innerHeight: any;
+  branchOld: Branch;
 
   constructor(public branchService: BranchService,
     public toastr: ToastrService) {
@@ -37,6 +38,8 @@ export class BranchMaintenanceComponent implements OnInit {
     console.log("payload: ", payload);
     this.branchValidationArray = [];
     this.branchModel = true;
+
+    this.branchOld = this.branch;
 
     if (mode == 1) {
       this.editMode = false;
@@ -71,11 +74,21 @@ export class BranchMaintenanceComponent implements OnInit {
           this.loadingMask = false;
         } else {
           this.showError(res['errorMessage'])
+          this.branchList.forEach((branch: Branch, index: number) => {
+            if (branch.id === this.branch.id) {
+              this.branchList[index] = this.branch;
+            }
+          });
         }
         this.loadingMask = false;
       }, error => {
         this.loadingMask = false;
         this.showError(error)
+        this.branchList.forEach((branch: Branch, index: number) => {
+          if (branch.id === this.branch.id) {
+            this.branchList[index] = this.branch;
+          }
+        });
       });
     } else {
       this.loadingMask = false;

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, public branchService: BranchService, public distanceService: DistanceService) {
     this.lottieConfig = {
-      path: '/assets/lottie/business.json',
+      path: 'SPATH/assets/lottie/business.json',
       renderer: 'canvas',
       autoplay: true,
       loop: true
