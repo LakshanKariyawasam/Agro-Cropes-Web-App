@@ -154,8 +154,6 @@ export class DistanceMaintenanceComponent implements OnInit {
         this.showError(res['errorMessage'])
       }
 
-
-      this.showError(res['errorMessage'])
       this.loadingMask = false;
     }, error => {
       this.loadingMask = false;

@@ -21,7 +21,7 @@ export class BranchService {
     }
 
     public deleteBranch(payload) {
-        return this.http.delete(AppParams.BASE_PATH + "BranchService/deleteBranch", payload);
+        return this.http.put(AppParams.BASE_PATH + "BranchService/deleteBranch", payload);
     }
 
 }

@@ -75,8 +75,8 @@ export class BranchMaintenanceComponent implements OnInit {
         } else {
           this.showError(res['errorMessage'])
           this.branchList.forEach((branch: Branch, index: number) => {
-            if (branch.id === this.branch.id) {
-              this.branchList[index] = this.branch;
+            if (branch.id === this.branchOld.id) {
+              this.branchList[index] = this.branchOld;
             }
           });
         }
@@ -85,8 +85,8 @@ export class BranchMaintenanceComponent implements OnInit {
         this.loadingMask = false;
         this.showError(error)
         this.branchList.forEach((branch: Branch, index: number) => {
-          if (branch.id === this.branch.id) {
-            this.branchList[index] = this.branch;
+          if (branch.id === this.branchOld.id) {
+            this.branchList[index] = this.branchOld;
           }
         });
       });

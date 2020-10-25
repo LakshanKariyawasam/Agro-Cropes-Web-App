@@ -21,7 +21,7 @@ export class DistanceService {
     }
 
     public deleteDistance(payload) {
-        return this.http.delete(AppParams.BASE_PATH + "DistanceService/deleteDistance", payload);
+        return this.http.put(AppParams.BASE_PATH + "DistanceService/deleteDistance", payload);
     }
 
 }
