@@ -1,3 +1,5 @@
+<app-loading-mask *ngIf="loadingMask"></app-loading-mask>
+
 <div class="container">
   <div class="clr-row">
     <div class="clr-col-md-3">
@@ -127,9 +129,13 @@
               </div>
             </div>
             <div class="clr-row" *ngIf="lableOne">
-              {{lableOne}}
+              <span>{{lableOne}}</span>
               <br><br>
-              {{lableTwo}}
+              <span style="width: 60vw; white-space: break-spaces;
+              display: inline-block;
+              margin-top: 40px;
+              margin-left: -400px; overflow-y: scroll;
+            height: 30vh;">{{lableTwo}}</span>
             </div>
           </div>
         </div>

@@ -3,7 +3,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Distance } from '../models/Distance';
 import { DistanceService } from '../services/distance.service';
 import { Branch } from '../models/Branch';
-import { BranchService } from '../services/branch.service';
 
 @Component({
   selector: 'app-distance-maintenance',
@@ -17,6 +16,7 @@ export class DistanceMaintenanceComponent implements OnInit {
   public confirmationModel: boolean;
 
   public distance = new Distance();
+
   public distanceValidationArray = [];
   public distanceList: Distance[] = new Array<Distance>();
   public branchList: Branch[] = new Array<Branch>();
@@ -36,7 +36,6 @@ export class DistanceMaintenanceComponent implements OnInit {
   }
 
   openDistanceModel(mode, payload) {
-    console.log("payload: ", payload);
     this.distanceValidationArray = [];
     this.distanceModel = true;
 
@@ -50,15 +49,10 @@ export class DistanceMaintenanceComponent implements OnInit {
   }
 
   editDistance() {
-    console.log("loading mask: ", this.loadingMask)
     this.loadingMask = true;
-    console.log("distance: ", this.distance)
-
     this.validateDistanceForm();
-    console.log("loading mask: ", this.distanceValidationArray.length);
     if (this.distanceValidationArray.length == 0) {
       this.distanceService.editDistance(this.distance).subscribe(res => {
-        console.log("resss ", res)
 
         if (res['flag'] == 1) {
           this.showSuccess("Distance edit successfully")
@@ -77,16 +71,19 @@ export class DistanceMaintenanceComponent implements OnInit {
             }
           });
 
-          console.log("distanceList :::: ", this.distanceList);
+
+          localStorage.setItem('distanceList', JSON.stringify(this.distanceList));
           this.distanceModel = false;
           this.loadingMask = false;
         } else {
-          this.showError(res['errorMessage'])
+          this.showError(res['errorMessage']);
+          this.distanceList = JSON.parse(localStorage.getItem('distanceList'));
         }
         this.loadingMask = false;
       }, error => {
         this.loadingMask = false;
-        this.showError(error)
+        this.showError(error);
+        this.distanceList = JSON.parse(localStorage.getItem('distanceList'));
       });
     } else {
       this.loadingMask = false;
@@ -114,9 +111,12 @@ export class DistanceMaintenanceComponent implements OnInit {
           });
 
           this.distanceList.push(this.distance);
+
+
+          localStorage.setItem('distanceList', JSON.stringify(this.distanceList));
           this.distanceModel = false;
         } else {
-          this.showError(res['errorMessage'])
+          this.showError(res['errorMessage']);
         }
 
         this.loadingMask = false;
@@ -140,8 +140,6 @@ export class DistanceMaintenanceComponent implements OnInit {
 
       if (res['flag'] == 1) {
         this.showSuccess("Distance delete successfully")
-
-        console.log("resss ", res)
         this.distanceList.forEach((distance: Distance, index: number) => {
           if (distance.id === this.distance.id) {
             this.distanceList.splice(index, 1);
@@ -150,8 +148,11 @@ export class DistanceMaintenanceComponent implements OnInit {
 
         this.confirmationModel = false;
 
+
+        localStorage.setItem('distanceList', JSON.stringify(this.distanceList));
+
       } else {
-        this.showError(res['errorMessage'])
+        this.showError(res['errorMessage']);
       }
 
       this.loadingMask = false;

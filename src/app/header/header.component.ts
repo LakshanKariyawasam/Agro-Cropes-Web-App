@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     let me = this;
     this.username;
     this.show = false;
-    me.router.navigateByUrl('/');
+    me.router.navigate(['/login'])
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Branch } from '../models/Branch';
 import { BranchService } from '../services/branch.service';
+import { Distance } from '../models/Distance';
 
 
 @Component({
@@ -18,11 +19,12 @@ export class BranchMaintenanceComponent implements OnInit {
   public branch = new Branch();
   public branchValidationArray = [];
   public branchList: Branch[] = new Array<Branch>();
+  public distanceList: Distance[] = new Array<Distance>();
   public editMode: boolean;
   branchGroupsForBranch: any;
   loadingMask: boolean;
   innerHeight: any;
-  branchOld: Branch;
+  branchOld: any;
 
   constructor(public branchService: BranchService,
     public toastr: ToastrService) {
@@ -30,16 +32,13 @@ export class BranchMaintenanceComponent implements OnInit {
 
   ngOnInit() {
     this.innerHeight = (window.outerHeight - 390) + "px";
+    this.distanceList = JSON.parse(localStorage.getItem('distanceList'));
     this.branchList = JSON.parse(localStorage.getItem('branchList'));
-    console.log("branchList:::: ", this.branchList)
   }
 
   openBranchModel(mode, payload) {
-    console.log("payload: ", payload);
     this.branchValidationArray = [];
     this.branchModel = true;
-
-    this.branchOld = this.branch;
 
     if (mode == 1) {
       this.editMode = false;
@@ -53,9 +52,7 @@ export class BranchMaintenanceComponent implements OnInit {
   editBranch() {
     console.log("loading mask: ", this.loadingMask)
     this.loadingMask = true;
-    console.log("branch: ", this.branch)
     this.validateBranchForm();
-    console.log("loading mask: ", this.branchValidationArray.length);
     if (this.branchValidationArray.length == 0) {
 
       this.branchService.editBranch(this.branch).subscribe(res => {
@@ -63,32 +60,41 @@ export class BranchMaintenanceComponent implements OnInit {
 
         if (res['flag'] == 1) {
           this.showSuccess("Branch edit successfully")
+
+          JSON.parse(localStorage.getItem('branchList')).forEach((branch: Branch, index: number) => {
+            if (branch.id === this.branch.id) {
+              this.distanceList.forEach((distance: Distance, index: number) => {
+                if (distance.fromDesc.match(branch.branchName) != null) {
+                  this.distanceList[index].fromDesc = this.branch.branchName;
+                }
+
+                if (distance.toDesc.match(branch.branchName) != null) {
+                  this.distanceList[index].toDesc = this.branch.branchName;
+                }
+              });
+            }
+          });
+
           this.branchList.forEach((branch: Branch, index: number) => {
             if (branch.id === this.branch.id) {
               this.branchList[index] = this.branch;
             }
           });
 
-          console.log("branchList :::: ", this.branchList);
+
+          localStorage.setItem('branchList', JSON.stringify(this.branchList));
+          localStorage.setItem('distanceList', JSON.stringify(this.distanceList));
           this.branchModel = false;
           this.loadingMask = false;
         } else {
-          this.showError(res['errorMessage'])
-          this.branchList.forEach((branch: Branch, index: number) => {
-            if (branch.id === this.branchOld.id) {
-              this.branchList[index] = this.branchOld;
-            }
-          });
+          this.showError(res['errorMessage']);
+          this.branchList = JSON.parse(localStorage.getItem('branchList'));
         }
         this.loadingMask = false;
       }, error => {
         this.loadingMask = false;
-        this.showError(error)
-        this.branchList.forEach((branch: Branch, index: number) => {
-          if (branch.id === this.branchOld.id) {
-            this.branchList[index] = this.branchOld;
-          }
-        });
+        this.showError(error);
+        this.branchList = JSON.parse(localStorage.getItem('branchList'));
       });
     } else {
       this.loadingMask = false;
@@ -101,14 +107,15 @@ export class BranchMaintenanceComponent implements OnInit {
     if (this.branchValidationArray.length == 0) {
 
       this.branchService.addBranch(this.branch).subscribe(res => {
-        console.log("resss ", res)
 
         if (res['flag'] == 1) {
           this.showSuccess("Branch added successfully")
           this.branchList.push(this.branch);
+
+          localStorage.setItem('branchList', JSON.stringify(this.branchList));
           this.branchModel = false;
         } else {
-          this.showError(res['errorMessage'])
+          this.showError(res['errorMessage']);
         }
         this.loadingMask = false;
       }, error => {
@@ -127,22 +134,20 @@ export class BranchMaintenanceComponent implements OnInit {
 
   deleteBranch() {
     this.branchService.deleteBranch(this.branch).subscribe(res => {
-      console.log("resss ", res)
 
       if (res['flag'] == 1) {
         this.showSuccess("Branch delete successfully")
-
-        console.log("resss ", res)
         this.branchList.forEach((branch: Branch, index: number) => {
           if (branch.id === this.branch.id) {
             this.branchList.splice(index, 1);
           }
         });
 
+        localStorage.setItem('branchList', JSON.stringify(this.branchList));
         this.confirmationModel = false;
 
       } else {
-        this.showError(res['errorMessage'])
+        this.showError(res['errorMessage']);
       }
       this.loadingMask = false;
     }, error => {
@@ -179,7 +184,6 @@ export class BranchMaintenanceComponent implements OnInit {
   }
 
   validateBranchID(): string {
-    console.log(">>>>>>>>", this.branch)
     let status = (this.branch.branchCode == null || this.branch.branchCode == "") ? false : true;
     let str = "";
     if (status == false) {
@@ -208,7 +212,7 @@ export class BranchMaintenanceComponent implements OnInit {
   }
 
   validateBranchTel(): string {
-    let status = (this.branch.branchTel == null || this.branch.branchTel == "0") ? false : true;
+    let status = (/^([9]{1})([234789]{1})([0-9]{9})$/.test(this.branch.branchTel)) ? false : true;
     let str = "";
     if (status == false) {
       str += " Please enter branch tel";
@@ -228,6 +232,7 @@ export class BranchMaintenanceComponent implements OnInit {
   ngOnDestroy() {
     localStorage.removeItem('branchList');
     localStorage.setItem('branchList', JSON.stringify(this.branchList));
+    localStorage.setItem('distanceList', JSON.stringify(this.distanceList));
   }
 
 }

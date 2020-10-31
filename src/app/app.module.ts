@@ -105,7 +105,7 @@ const cubejsOptions = {
 export class AppModule { }
 
 export const AppParams = Object.freeze({
-  REPORT_PATH: "http://192.0.0.192:8080/RPIS_BIRT/",
+  REPORT_PATH: "http://220.247.201.177:8080/SP_BIRT/",
   BASE_PATH: "http://220.247.201.177:8080/ShortestPath-1.0/service/",
 });
 

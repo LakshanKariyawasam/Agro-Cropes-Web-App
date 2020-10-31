@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppParams } from '../app.module';
 
 @Component({
   selector: 'app-custom-report',
@@ -24,11 +25,11 @@ export class CustomReportComponent implements OnInit {
   }
 
   getReport1() {
-
+    window.open(AppParams.REPORT_PATH + "/BirtReportController?ReportFormat=xlsx&ReportName=BRANCH_DETAILS.rptdesign");
   }
 
   getReport2() {
-    
+    window.open(AppParams.REPORT_PATH + "/BirtReportController?ReportFormat=xlsx&ReportName=DISTANCE_DETAILS.rptdesign");
   }
 
 }

@@ -6,8 +6,9 @@ import { OperationalDashboardComponent } from './operational-dashboard/operation
 import { CustomReportComponent } from './custom-report/custom-report.component';
 import { DistanceMaintenanceComponent } from './distance-maintenance/distance-maintenance.component';
 
-const routes: Routes = [];
 const appRoutes: Routes = [
+
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
 
     {
         path: 'login',
@@ -32,9 +33,7 @@ const appRoutes: Routes = [
     {
         path: 'custom-report',
         component: CustomReportComponent
-    },
-
-    { path: '**', redirectTo: 'login' }
+    }
 ];
 
 @NgModule({
